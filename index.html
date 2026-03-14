@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Поумничай мне тут! — Квизы в Красногорске</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--primary:#5b4cdb;--primary-dark:#4438c0;--accent:#f59e0b;--bg:#f8f7ff;--surface:#fff;--text:#1a1a2e;--text-muted:#6b7280;--border:#e5e7eb;--success:#10b981;--error:#ef4444;--radius:12px;--shadow:0 2px 12px rgba(0,0,0,.08)}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--primary);text-decoration:none}
+.container{max-width:960px;margin:0 auto;padding:0 1.5rem}
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:1rem 0;position:sticky;top:0;z-index:100;box-shadow:var(--shadow)}
+header nav{display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:700;font-size:1.2rem;color:var(--text)}
+.nav-links{list-style:none;display:flex;gap:1.5rem}
+.nav-links a{color:var(--text-muted);font-weight:500}
+.nav-links a:hover{color:var(--primary)}
+.hero{background:linear-gradient(135deg,var(--primary) 0%,#7c3aed 100%);color:#fff;padding:5rem 0;text-align:center}
+.hero h1{font-size:clamp(1.8rem,5vw,3rem);margin-bottom:1rem;line-height:1.2}
+.hero-sub{font-size:1.1rem;opacity:.9;max-width:560px;margin:0 auto 2rem}
+.btn{display:inline-block;padding:.6rem 1.4rem;border-radius:8px;font-weight:600;font-size:.95rem;cursor:pointer;border:none;transition:all .15s;text-decoration:none}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-outline{background:transparent;border:2px solid var(--primary);color:var(--primary)}
+.btn-outline:hover{background:var(--primary);color:#fff}
+.btn-accent{background:var(--accent);color:var(--text)}
+.formats{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;padding:3rem 1.5rem}
+.format-card{background:var(--surface);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow);text-align:center}
+.format-icon{font-size:3rem;margin-bottom:1rem}
+.format-card h2{margin-bottom:.5rem;color:var(--primary)}
+.upcoming{padding:0 1.5rem 3rem}
+.upcoming h2{font-size:1.6rem;margin-bottom:1.5rem}
+.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;margin-bottom:2rem}
+.game-card{background:var(--surface);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:.5rem}
+.game-card h3{font-size:1.1rem}
+.game-meta{color:var(--text-muted);font-size:.9rem}
+.game-card .btn{margin-top:auto}
+.game-type{font-size:.8rem;font-weight:700;text-transform:uppercase;padding:.2rem .6rem;border-radius:4px;width:fit-content}
+.game-type.quiz{background:#ede9fe;color:var(--primary)}
+.game-type.music{background:#fef3c7;color:#92400e}
+.how-it-works{padding:3rem 1.5rem;text-align:center}
+.how-it-works h2{margin-bottom:2rem;font-size:1.6rem}
+.steps{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
+.step{max-width:200px}
+.step-num{width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;font-size:1.4rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
+/* Schedule */
+.page-section{padding:2.5rem 1.5rem}
+.page-section h1{font-size:2rem;margin-bottom:1.5rem}
+.games-list{display:flex;flex-direction:column;gap:1rem}
+.game-row{background:var(--surface);border-radius:var(--radius);padding:1.25rem 1.5rem;box-shadow:var(--shadow);display:grid;grid-template-columns:3rem 1fr auto;gap:1rem;align-items:center}
+.game-row-badge{width:3rem;height:3rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+.game-row-badge.quiz{background:#ede9fe}
+.game-row-badge.music{background:#fef3c7}
+.game-row-info h3{margin-bottom:.25rem}
+.game-row-info p{color:var(--text-muted);font-size:.9rem}
+.game-row-action{text-align:right;min-width:120px}
+.price{font-weight:700;font-size:1.1rem;margin-bottom:.25rem}
+.spots{font-size:.85rem;color:var(--success);margin-bottom:.5rem}
+/* Register form */
+.form-page{max-width:600px}
+.back-link{color:var(--text-muted);display:inline-block;margin-bottom:1rem}
+.game-summary{background:var(--surface);border-left:4px solid var(--primary);padding:1rem 1.25rem;border-radius:0 var(--radius) var(--radius) 0;margin-bottom:2rem}
+.game-summary p{margin:.2rem 0}
+.reg-form{display:flex;flex-direction:column;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+label{font-weight:600;font-size:.9rem}
+input,select,textarea{padding:.6rem .9rem;border:1.5px solid var(--border);border-radius:8px;font-size:1rem;font-family:inherit;width:100%;transition:border-color .15s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--primary)}
+.btn-large{padding:.85rem 2rem;font-size:1rem}
+footer{background:var(--text);color:#9ca3af;padding:2rem 0;text-align:center;margin-top:4rem}
+footer a{color:#d1d5db}
+/* tabs */
+.tabs{display:flex;gap:.5rem;margin-bottom:2rem;border-bottom:2px solid var(--border);padding-bottom:0}
+.tab{padding:.6rem 1.2rem;cursor:pointer;font-weight:600;color:var(--text-muted);border-bottom:2px solid transparent;margin-bottom:-2px}
+.tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.page{display:none}
+.page.active{display:block}
+@media(max-width:640px){.formats{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.game-row{grid-template-columns:2.5rem 1fr}.game-row-action{grid-column:1/-1;text-align:left}}
+</style>
+</head>
+<body>
+<header>
+<nav class="container">
+  <a href="#" class="logo" onclick="showPage('home')">🧠 Поумничай мне тут!</a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('schedule')">Расписание</a></li>
+    <li><a href="#" onclick="showPage('leaderboard')">Таблица лидеров</a></li>
+  </ul>
+</nav>
+</header>
+
+<div id="page-home" class="page active">
+<section class="hero">
+  <div class="container">
+    <h1>Квизы и музыкальное лото<br>в Красногорске</h1>
+    <p class="hero-sub">Проверь эрудицию на «Поумничай мне тут!» или угадай мелодию на «Хит лото» — каждую неделю в лучших барах района</p>
+    <a href="#" class="btn btn-accent" onclick="showPage('schedule')">Ближайшие игры</a>
+  </div>
+</section>
+<section class="formats container">
+  <div class="format-card">
+    <div class="format-icon">🧠</div>
+    <h2>Поумничай мне тут!</h2>
+    <p>Классический квиз: вопросы на эрудицию, логику, кино, спорт и многое другое. Играй командой до 6 человек.</p>
+  </div>
+  <div class="format-card">
+    <div class="format-icon">🎵</div>
+    <h2>Хит лото</h2>
+    <p>Музыкальное лото — угадай мелодию из любого жанра и эпохи. Весело, ностальгично, и для всех возрастов.</p>
+  </div>
+</section>
+<section class="upcoming container">
+  <h2>Ближайшие игры</h2>
+  <div class="games-grid">
+    <div class="game-card">
+      <div class="game-type quiz">🧠 Квиз</div>
+      <h3>Поумничай мне тут!</h3>
+      <p class="game-meta">📅 20.03.2026 в 19:00</p>
+      <p class="game-meta">📍 Бар «Соседи»</p>
+      <p class="game-meta">💰 500 ₽ с команды</p>
+      <a href="#" class="btn btn-primary" onclick="showPage('register')">Записаться</a>
+    </div>
+    <div class="game-card">
+      <div class="game-type music">🎵 Хит лото</div>
+      <h3>Хит лото</h3>
+      <p class="game-meta">📅 22.03.2026 в 19:30</p>
+      <p class="game-meta">📍 Кафе «Центр»</p>
+      <p class="game-meta">💰 400 ₽ с команды</p>
+      <a href="#" class="btn btn-primary" onclick="showPage('register')">Записаться</a>
+    </div>
+    <div class="game-card">
+      <div class="game-type quiz">🧠 Квиз</div>
+      <h3>Поумничай мне тут!</h3>
+      <p class="game-meta">📅 27.03.2026 в 19:00</p>
+      <p class="game-meta">📍 Паб «Главный»</p>
+      <p class="game-meta">💰 500 ₽ с команды</p>
+      <a href="#" class="btn btn-primary" onclick="showPage('register')">Записаться</a>
+    </div>
+  </div>
+  <div style="text-align:center"><a href="#" class="btn btn-outline" onclick="showPage('schedule')">Все игры →</a></div>
+</section>
+<section class="how-it-works container">
+  <h2>Как это работает</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><p>Выбери игру в расписании</p></div>
+    <div class="step"><div class="step-num">2</div><p>Запишись командой (1–6 человек)</p></div>
+    <div class="step"><div class="step-num">3</div><p>Приходи и побеждай!</p></div>
+  </div>
+</section>
+</div>
+
+<div id="page-schedule" class="page">
+<section class="container page-section">
+  <h1>Расписание игр</h1>
+  <div class="games-list">
+    <div class="game-row">
+      <div class="game-row-badge quiz">🧠</div>
+      <div class="game-row-info">
+        <h3>Поумничай мне тут!</h3>
+        <p>📅 20.03.2026, 19:00 · 📍 Бар «Соседи»</p>
+        <p>Красногорск, ул. Ленина, 12</p>
+        <p>Классический квиз — 6 раундов, 30 вопросов</p>
+      </div>
+      <div class="game-row-action">
+        <p class="price">500 ₽</p>
+        <p class="spots">Мест: 15</p>
+        <a href="#" class="btn btn-primary" onclick="showPage('register')">Записаться</a>
+      </div>
+    </div>
+    <div class="game-row">
+      <div class="game-row-badge music">🎵</div>
+      <div class="game-row-info">
+        <h3>Хит лото</h3>
+        <p>📅 22.03.2026, 19:30 · 📍 Кафе «Центр»</p>
+        <p>Красногорск, ул. Советская, 5</p>
+        <p>Угадай мелодию — 50 треков из разных эпох</p>
+      </div>
+      <div class="game-row-action">
+        <p class="price">400 ₽</p>
+        <p class="spots">Мест: 12</p>
+        <a href="#" class="btn btn-primary" onclick="showPage('register')">Записаться</a>
+      </div>
+    </div>
+    <div class="game-row">
+      <div class="game-row-badge quiz">🧠</div>
+      <div class="game-row-info">
+        <h3>Поумничай мне тут!</h3>
+        <p>📅 27.03.2026, 19:00 · 📍 Паб «Главный»</p>
+        <p>Красногорск, Волоколамское ш., 3</p>
+      </div>
+      <div class="game-row-action">
+        <p class="price">500 ₽</p>
+        <p class="spots">Мест: 20</p>
+        <a href="#" class="btn btn-primary" onclick="showPage('register')">Записаться</a>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div id="page-register" class="page">
+<section class="container page-section form-page">
+  <a href="#" class="back-link" onclick="showPage('schedule')">← Расписание</a>
+  <h1>Регистрация</h1>
+  <div class="game-summary">
+    <p><strong>Поумничай мне тут!</strong></p>
+    <p>📅 20.03.2026 в 19:00</p>
+    <p>📍 Бар «Соседи»</p>
+    <p>💰 500 ₽ с команды</p>
+    <p class="spots">Свободных мест: 15</p>
+  </div>
+  <form class="reg-form" onsubmit="showSuccess(event)">
+    <div class="form-group">
+      <label>Название команды *</label>
+      <input type="text" required placeholder="Например: Умники и умницы">
+    </div>
+    <div class="form-group">
+      <label>Имя контактного лица *</label>
+      <input type="text" required placeholder="Ваше имя">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Телефон</label>
+        <input type="tel" placeholder="+7 (999) 123-45-67">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="you@example.com">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Количество игроков *</label>
+      <select><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select>
+    </div>
+    <div class="form-group">
+      <label>Комментарий</label>
+      <textarea rows="3" placeholder="Любые вопросы или пожелания"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary btn-large">Записаться</button>
+    <p style="font-size:.8rem;color:var(--text-muted);margin-top:.5rem">* Обязательные поля. Телефон или email — хотя бы одно из двух.</p>
+  </form>
+</section>
+</div>
+
+<div id="page-success" class="page">
+<section class="container page-section" style="text-align:center">
+  <div style="font-size:5rem;margin:2rem 0 1rem">🎉</div>
+  <h1>Готово!</h1>
+  <p>Ты записан на <strong>Поумничай мне тут!</strong></p>
+  <p>📅 20.03.2026 в 19:00</p>
+  <p>📍 Бар «Соседи»</p>
+  <p style="color:var(--text-muted);margin-top:.5rem">Увидимся на игре!</p>
+  <a href="#" class="btn btn-outline" style="margin-top:1.5rem" onclick="showPage('schedule')">Другие игры</a>
+</section>
+</div>
+
+<div id="page-leaderboard" class="page">
+<section class="container page-section">
+  <h1>Таблица лидеров</h1>
+  <div style="background:var(--surface);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow)">
+    <h2>Поумничай мне тут! — 14.03.2026</h2>
+    <p style="color:var(--text-muted);font-size:.9rem">📍 Бар «Соседи»</p>
+    <table style="width:100%;border-collapse:collapse;margin-top:1rem">
+      <thead><tr><th style="padding:.6rem;text-align:left;color:var(--text-muted);font-size:.85rem;text-transform:uppercase;border-bottom:1px solid var(--border)">Место</th><th style="padding:.6rem;text-align:left;color:var(--text-muted);font-size:.85rem;text-transform:uppercase;border-bottom:1px solid var(--border)">Команда</th><th style="padding:.6rem;text-align:left;color:var(--text-muted);font-size:.85rem;text-transform:uppercase;border-bottom:1px solid var(--border)">Очки</th></tr></thead>
+      <tbody>
+        <tr style="background:#fffbeb;font-weight:700"><td style="padding:.6rem;border-bottom:1px solid var(--border)">🥇</td><td style="padding:.6rem;border-bottom:1px solid var(--border)">Мозговой штурм</td><td style="padding:.6rem;border-bottom:1px solid var(--border)">28</td></tr>
+        <tr style="background:#f9fafb"><td style="padding:.6rem;border-bottom:1px solid var(--border)">🥈</td><td style="padding:.6rem;border-bottom:1px solid var(--border)">Эрудиты</td><td style="padding:.6rem;border-bottom:1px solid var(--border)">25</td></tr>
+        <tr style="background:#fff7ed"><td style="padding:.6rem;border-bottom:1px solid var(--border)">🥉</td><td style="padding:.6rem;border-bottom:1px solid var(--border)">Красногорск Forever</td><td style="padding:.6rem;border-bottom:1px solid var(--border)">23</td></tr>
+        <tr><td style="padding:.6rem;border-bottom:1px solid var(--border)">4</td><td style="padding:.6rem;border-bottom:1px solid var(--border)">Знатоки</td><td style="padding:.6rem;border-bottom:1px solid var(--border)">20</td></tr>
+        <tr><td style="padding:.6rem">5</td><td style="padding:.6rem">Команда мечты</td><td style="padding:.6rem">17</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="container">
+    <p>© 2025 Поумничай мне тут! · Красногорск и Московская область</p>
+    <p>По вопросам: <a href="https://t.me/Vlad_Ah">Telegram</a></p>
+    <p style="margin-top:.5rem;font-size:.8rem;opacity:.6">⚠️ Это статический preview. Форма регистрации работает только на живом сервере.</p>
+  </div>
+</footer>
+
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  window.scrollTo(0, 0);
+  return false;
+}
+function showSuccess(e) {
+  e.preventDefault();
+  showPage('success');
+}
+</script>
+</body>
+</html>
