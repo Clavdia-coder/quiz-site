@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Квизы и музыкальное лото в Красногорске — Поумничай мне тут!{% endblock %}
+{% block meta_description %}Интеллектуальные квизы и музыкальное лото «Хит лото» в Красногорске и Московской области. Регистрируйся на ближайшую игру!{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <h1>Квизы и музыкальное лото<br>в Красногорске</h1>
+        <p class="hero-sub">Проверь эрудицию на «Поумничай мне тут!» или угадай мелодию на «Хит лото» — каждую неделю в лучших барах района</p>
+        <a href="/schedule" class="btn btn-primary">Ближайшие игры</a>
+    </div>
+</section>
+
+<section class="formats container">
+    <div class="format-card">
+        <div class="format-icon">🧠</div>
+        <h2>Поумничай мне тут!</h2>
+        <p>Классический квиз: вопросы на эрудицию, логику, кино, спорт и многое другое. Играй командой до 6 человек.</p>
+    </div>
+    <div class="format-card">
+        <div class="format-icon">🎵</div>
+        <h2>Хит лото</h2>
+        <p>Музыкальное лото — угадай мелодию из любого жанра и эпохи. Весело, ностальгично, и для всех возрастов.</p>
+    </div>
+</section>
+
+{% if games %}
+<section class="upcoming container">
+    <h2>Ближайшие игры</h2>
+    <div class="games-grid">
+        {% for game in games %}
+        <div class="game-card">
+            <div class="game-type {{ 'quiz' if game.game_type == 'quiz' else 'music' }}">
+                {{ "🧠 Квиз" if game.game_type == "quiz" else "🎵 Хит лото" }}
+            </div>
+            <h3>{{ game.title }}</h3>
+            <p class="game-meta">📅 {{ game.game_date.strftime("%d.%m.%Y в %H:%M") }}</p>
+            <p class="game-meta">📍 {{ game.location }}</p>
+            {% if game.price > 0 %}
+            <p class="game-meta">💰 {{ game.price }} ₽ с команды</p>
+            {% endif %}
+            <a href="/register/{{ game.id }}" class="btn btn-primary">Записаться</a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="center">
+        <a href="/schedule" class="btn btn-outline">Все игры →</a>
+    </div>
+</section>
+{% endif %}
+
+<section class="how-it-works container">
+    <h2>Как это работает</h2>
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <p>Выбери игру в расписании</p>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <p>Запишись командой (1–6 человек)</p>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <p>Приходи и побеждай!</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

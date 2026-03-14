@@ -1,0 +1,41 @@
+{% extends "admin/base.html" %}
+{% block title %}Игры{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Игры</h1>
+    <a href="/admin/games/new" class="btn btn-primary">+ Добавить игру</a>
+</div>
+
+<table class="admin-table">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Тип</th>
+            <th>Дата</th>
+            <th>Место</th>
+            <th>Зарег.</th>
+            <th>Макс.</th>
+            <th>Статус</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for g in games %}
+    <tr class="{{ '' if g.is_active else 'inactive' }}">
+        <td>{{ g.title }}</td>
+        <td>{{ "Квиз" if g.game_type == "quiz" else "Хит лото" }}</td>
+        <td>{{ g.game_date.strftime("%d.%m.%Y %H:%M") }}</td>
+        <td>{{ g.location }}</td>
+        <td>{{ counts[g.id] }}</td>
+        <td>{{ g.max_teams }}</td>
+        <td>{{ "✅" if g.is_active else "❌" }}</td>
+        <td>
+            <a href="/admin/games/{{ g.id }}/edit">Редактировать</a> ·
+            <a href="/admin/registrations?game_id={{ g.id }}">Регистрации</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "admin/base.html" %}
+{% block title %}Дашборд{% endblock %}
+
+{% block content %}
+<h1>Дашборд</h1>
+
+<div class="admin-stats">
+    <div class="stat-card">
+        <div class="stat-num">{{ total_games }}</div>
+        <div class="stat-label">Всего игр</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-num">{{ total_regs }}</div>
+        <div class="stat-label">Регистраций</div>
+    </div>
+</div>
+
+<h2>Ближайшие игры</h2>
+{% if upcoming %}
+<table class="admin-table">
+    <thead><tr><th>Игра</th><th>Дата</th><th>Место</th><th>Действия</th></tr></thead>
+    <tbody>
+    {% for g in upcoming %}
+    <tr>
+        <td>{{ g.title }}</td>
+        <td>{{ g.game_date.strftime("%d.%m.%Y %H:%M") }}</td>
+        <td>{{ g.location }}</td>
+        <td>
+            <a href="/admin/registrations?game_id={{ g.id }}">Регистрации</a> ·
+            <a href="/admin/games/{{ g.id }}/edit">Редактировать</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Нет запланированных игр. <a href="/admin/games/new">Добавить игру</a></p>
+{% endif %}
+{% endblock %}

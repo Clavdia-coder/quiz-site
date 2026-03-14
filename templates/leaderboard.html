@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Таблица лидеров — Поумничай мне тут!{% endblock %}
+
+{% block content %}
+<section class="container page-section">
+    <h1>Таблица лидеров</h1>
+
+    {% if games %}
+    {% for game in games %}
+    {% set res = results[game.id] %}
+    {% if res %}
+    <div class="leaderboard-block">
+        <h2>{{ game.title }} — {{ game.game_date.strftime("%d.%m.%Y") }}</h2>
+        <p class="text-muted">📍 {{ game.location }}</p>
+        <table class="lb-table">
+            <thead>
+                <tr>
+                    <th>Место</th>
+                    <th>Команда</th>
+                    {% if res[0].score is not none %}<th>Очки</th>{% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in res %}
+                <tr class="{% if r.place == 1 %}gold{% elif r.place == 2 %}silver{% elif r.place == 3 %}bronze{% endif %}">
+                    <td>
+                        {% if r.place == 1 %}🥇
+                        {% elif r.place == 2 %}🥈
+                        {% elif r.place == 3 %}🥉
+                        {% else %}{{ r.place }}{% endif %}
+                    </td>
+                    <td>{{ r.team_name }}</td>
+                    {% if r.score is not none %}<td>{{ r.score }}</td>{% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% else %}
+    <p class="empty-state">Результаты ещё не добавлены. Скоро появятся!</p>
+    {% endif %}
+</section>
+{% endblock %}

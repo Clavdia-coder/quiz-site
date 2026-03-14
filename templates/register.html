@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Регистрация на {{ game.title }}{% endblock %}
+
+{% block content %}
+<section class="container page-section form-page">
+    <a href="/schedule" class="back-link">← Расписание</a>
+    <h1>Регистрация</h1>
+
+    <div class="game-summary">
+        <p><strong>{{ game.title }}</strong></p>
+        <p>📅 {{ game.game_date.strftime("%d.%m.%Y в %H:%M") }}</p>
+        <p>📍 {{ game.location }}</p>
+        {% if game.price > 0 %}<p>💰 {{ game.price }} ₽ с команды</p>{% endif %}
+        {% if spots_left > 0 %}
+        <p class="spots {% if spots_left <= 3 %}low{% endif %}">Свободных мест: {{ spots_left }}</p>
+        {% endif %}
+    </div>
+
+    {% if error %}
+    <div class="alert alert-error">{{ error }}</div>
+    {% endif %}
+
+    {% if spots_left > 0 %}
+    <form method="post" class="reg-form">
+        <div class="form-group">
+            <label for="team_name">Название команды *</label>
+            <input type="text" id="team_name" name="team_name" required maxlength="100"
+                   placeholder="Например: Умники и умницы">
+        </div>
+        <div class="form-group">
+            <label for="contact_name">Имя контактного лица *</label>
+            <input type="text" id="contact_name" name="contact_name" required maxlength="100"
+                   placeholder="Ваше имя">
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="phone">Телефон</label>
+                <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="players_count">Количество игроков *</label>
+            <select id="players_count" name="players_count">
+                {% for i in range(1, 7) %}
+                <option value="{{ i }}" {% if i == 2 %}selected{% endif %}>{{ i }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="comment">Комментарий</label>
+            <textarea id="comment" name="comment" rows="3"
+                      placeholder="Любые вопросы или пожелания"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-large">Записаться</button>
+        <p class="form-note">* Обязательные поля. Телефон или email — хотя бы одно из двух.</p>
+    </form>
+    {% endif %}
+</section>
+{% endblock %}

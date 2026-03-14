@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Поумничай мне тут!{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Квизы и музыкальное лото в Красногорске и Московской области{% endblock %}">
+    <link rel="stylesheet" href="/static/style.css">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">🧠 Поумничай мне тут!</a>
+            <ul class="nav-links">
+                <li><a href="/schedule">Расписание</a></li>
+                <li><a href="/leaderboard">Таблица лидеров</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Поумничай мне тут! · Красногорск и Московская область</p>
+            <p>По вопросам: <a href="https://t.me/Vlad_Ah">Telegram</a></p>
+        </div>
+    </footer>
+</body>
+</html>

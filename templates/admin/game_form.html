@@ -1,0 +1,63 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ "Редактировать игру" if game else "Новая игра" }}{% endblock %}
+
+{% block content %}
+<a href="/admin/games" class="back-link">← Игры</a>
+<h1>{{ "Редактировать игру" if game else "Новая игра" }}</h1>
+
+<form method="post" class="admin-form">
+    <div class="form-group">
+        <label>Название *</label>
+        <input type="text" name="title" required
+               value="{{ game.title if game else '' }}"
+               placeholder="Поумничай мне тут! или Хит лото">
+    </div>
+    <div class="form-group">
+        <label>Тип игры *</label>
+        <select name="game_type">
+            <option value="quiz" {{ 'selected' if game and game.game_type == 'quiz' }}>Квиз</option>
+            <option value="music" {{ 'selected' if game and game.game_type == 'music' }}>Хит лото</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Дата и время *</label>
+        <input type="datetime-local" name="game_date" required
+               value="{{ game.game_date.strftime('%Y-%m-%dT%H:%M') if game else '' }}">
+    </div>
+    <div class="form-group">
+        <label>Место (название бара) *</label>
+        <input type="text" name="location" required
+               value="{{ game.location if game else '' }}">
+    </div>
+    <div class="form-group">
+        <label>Адрес</label>
+        <input type="text" name="address"
+               value="{{ game.address if game else '' }}">
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label>Максимум команд</label>
+            <input type="number" name="max_teams" min="1"
+                   value="{{ game.max_teams if game else 20 }}">
+        </div>
+        <div class="form-group">
+            <label>Цена (₽ с команды)</label>
+            <input type="number" name="price" min="0"
+                   value="{{ game.price if game else 0 }}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Описание</label>
+        <textarea name="description" rows="4">{{ game.description if game else '' }}</textarea>
+    </div>
+    {% if game %}
+    <div class="form-group checkbox-group">
+        <label>
+            <input type="checkbox" name="is_active" {{ 'checked' if game.is_active }}>
+            Активна (видна в расписании)
+        </label>
+    </div>
+    {% endif %}
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+{% endblock %}

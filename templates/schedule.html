@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Расписание игр — Поумничай мне тут!{% endblock %}
+
+{% block content %}
+<section class="container page-section">
+    <h1>Расписание игр</h1>
+
+    {% if games %}
+    <div class="games-list">
+        {% for game in games %}
+        {% set registered = counts[game.id] %}
+        {% set spots_left = game.max_teams - registered %}
+        <div class="game-row">
+            <div class="game-row-badge {{ 'quiz' if game.game_type == 'quiz' else 'music' }}">
+                {{ "🧠" if game.game_type == "quiz" else "🎵" }}
+            </div>
+            <div class="game-row-info">
+                <h3>{{ game.title }}</h3>
+                <p>📅 {{ game.game_date.strftime("%d %B %Y, %H:%M") }} &nbsp;·&nbsp; 📍 {{ game.location }}</p>
+                {% if game.address %}<p class="text-muted">{{ game.address }}</p>{% endif %}
+                {% if game.description %}<p>{{ game.description }}</p>{% endif %}
+            </div>
+            <div class="game-row-action">
+                {% if game.price > 0 %}<p class="price">{{ game.price }} ₽</p>{% endif %}
+                <p class="spots {% if spots_left <= 3 %}low{% endif %}">
+                    {% if spots_left > 0 %}Мест: {{ spots_left }}{% else %}Мест нет{% endif %}
+                </p>
+                {% if spots_left > 0 %}
+                <a href="/register/{{ game.id }}" class="btn btn-primary">Записаться</a>
+                {% else %}
+                <span class="btn btn-disabled">Занято</span>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="empty-state">Пока нет запланированных игр. Следи за обновлениями!</p>
+    {% endif %}
+</section>
+{% endblock %}

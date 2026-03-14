@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Регистрация подтверждена!{% endblock %}
+
+{% block content %}
+<section class="container page-section center">
+    <div class="success-icon">🎉</div>
+    <h1>Готово!</h1>
+    <p>Ты записан на <strong>{{ game.title }}</strong></p>
+    <p>📅 {{ game.game_date.strftime("%d.%m.%Y в %H:%M") }}</p>
+    <p>📍 {{ game.location }}</p>
+    <p class="success-sub">Увидимся на игре! Если вдруг не сможешь — напиши нам заранее.</p>
+    <a href="/schedule" class="btn btn-outline" style="margin-top:1.5rem">Другие игры</a>
+</section>
+{% endblock %}

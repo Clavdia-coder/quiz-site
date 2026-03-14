@@ -1,0 +1,58 @@
+{% extends "admin/base.html" %}
+{% block title %}Регистрации{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Регистрации</h1>
+    <form method="get" class="filter-form">
+        <select name="game_id" onchange="this.form.submit()">
+            <option value="">Все игры</option>
+            {% for g in games %}
+            <option value="{{ g.id }}" {{ 'selected' if filter_game_id == g.id }}>
+                {{ g.title }} ({{ g.game_date.strftime("%d.%m.%Y") }})
+            </option>
+            {% endfor %}
+        </select>
+    </form>
+</div>
+
+<table class="admin-table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Команда</th>
+            <th>Контакт</th>
+            <th>Телефон</th>
+            <th>Email</th>
+            <th>Игроков</th>
+            <th>Игра</th>
+            <th>Дата записи</th>
+            <th>Статус</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for r in regs %}
+    <tr>
+        <td>{{ r.id }}</td>
+        <td>{{ r.team_name }}</td>
+        <td>{{ r.contact_name }}</td>
+        <td>{{ r.phone or '—' }}</td>
+        <td>{{ r.email or '—' }}</td>
+        <td>{{ r.players_count }}</td>
+        <td>
+            {% set g = games_map.get(r.game_id) %}
+            {{ g.title ~ " " ~ g.game_date.strftime("%d.%m") if g else "—" }}
+        </td>
+        <td>{{ r.created_at.strftime("%d.%m.%Y %H:%M") }}</td>
+        <td>
+            <form method="post" action="/admin/registrations/{{ r.id }}/confirm" style="display:inline">
+                <button type="submit" class="btn-small {{ 'confirmed' if r.is_confirmed else '' }}">
+                    {{ "✅ Подтверждено" if r.is_confirmed else "⬜ Подтвердить" }}
+                </button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
