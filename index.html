@@ -1,437 +1,348 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Поумничай мне тут! — Квизы и музлото в Красногорске</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Квизы и музыкальное лото в Красногорске — Поумничай мне тут!</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--red:#E63012;--orange:#F0A020;--gold:#D4A850;--dark:#0F0A05;--dark2:#1A1008;--dark3:#241810;--card-bg:#1E1208;--text:#F5EDD8;--text-muted:#9A8060;--border:#3A2818;--radius:16px;--shadow:0 4px 24px rgba(0,0,0,.5)}
-body{font-family:'Inter',sans-serif;background:var(--dark);color:var(--text);line-height:1.6}
-a{color:var(--orange);text-decoration:none}
-a:hover{color:var(--gold)}
-.container{max-width:1040px;margin:0 auto;padding:0 1.5rem}
-header{background:rgba(15,10,5,.95);border-bottom:1px solid var(--border);padding:.9rem 0;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-header nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.1rem;color:var(--text);letter-spacing:.02em}
-.logo span{color:var(--red)}
-.nav-links{list-style:none;display:flex;gap:1.5rem}
-.nav-links a{color:var(--text-muted);font-weight:500;font-size:.95rem;transition:color .15s}
-.nav-links a:hover,.nav-links a.hot{color:var(--orange)}
-.hero{background:var(--dark2);padding:5rem 0 4rem;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(230,48,18,.15),transparent);pointer-events:none}
-.hero-logos{display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;margin-bottom:2.5rem}
-.hero-logos img{height:80px;width:auto;filter:drop-shadow(0 4px 16px rgba(230,48,18,.4))}
-.hero h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.6rem,5vw,3rem);color:var(--text);line-height:1.15;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.02em}
-.hero h1 em{color:var(--red);font-style:normal}
-.hero-sub{font-size:1.15rem;color:var(--text-muted);max-width:520px;margin:0 auto 2rem}
-.hero-tags{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem}
-.tag{background:var(--dark3);border:1px solid var(--border);color:var(--text-muted);padding:.35rem .9rem;border-radius:99px;font-size:.85rem}
-.tag.hot{border-color:var(--red);color:var(--red)}
-.btn{display:inline-block;padding:.7rem 1.6rem;border-radius:10px;font-weight:700;font-size:.95rem;cursor:pointer;border:none;transition:all .15s;text-decoration:none;letter-spacing:.02em}
-.btn-red{background:var(--red);color:#fff}
-.btn-red:hover{background:#c52a10;color:#fff}
-.btn-outline{background:transparent;border:2px solid var(--orange);color:var(--orange)}
-.btn-outline:hover{background:var(--orange);color:var(--dark)}
-.btn-large{padding:1rem 2.5rem;font-size:1.05rem}
-.btn-sm{padding:.45rem 1rem;font-size:.85rem}
-.section-title{font-family:'Montserrat',sans-serif;font-weight:900;text-transform:uppercase;font-size:1.8rem;letter-spacing:.04em;margin-bottom:1.5rem}
-.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem}
-.section-header .section-title{margin-bottom:0}
-.formats{padding:4rem 1.5rem}
-.formats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-.format-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow)}
-.format-card.quiz{border-top:3px solid var(--red)}
-.format-card.music{border-top:3px solid var(--orange)}
-.format-logo{height:56px;margin-bottom:1.25rem}
-.format-card p{color:var(--text-muted);font-size:.95rem;line-height:1.7;margin-bottom:1.25rem}
-.games-list{display:flex;flex-direction:column;gap:.75rem}
-.game-row{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1.25rem;align-items:center;transition:border-color .15s}
-.game-row:hover{border-color:var(--orange)}
-.game-dot{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
-.game-dot.quiz{background:rgba(230,48,18,.15)}
-.game-dot.music{background:rgba(240,160,32,.15)}
-.game-info h3{font-weight:700;margin-bottom:.3rem}
-.game-info p{font-size:.88rem;color:var(--text-muted)}
-.game-action{text-align:right;min-width:130px}
-.price{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.15rem;margin-bottom:.3rem;color:var(--gold)}
-.spots{font-size:.8rem;margin-bottom:.5rem}
-.spots.ok{color:#4ade80}
-.spots.low{color:var(--red)}
-.lb-tabs{display:flex;gap:.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
-.lb-tab{padding:.6rem 1.2rem;cursor:pointer;font-weight:700;font-size:.9rem;color:var(--text-muted);border-bottom:2px solid transparent;margin-bottom:-1px;text-transform:uppercase;letter-spacing:.05em;transition:all .15s}
-.lb-tab.active{color:var(--orange);border-bottom-color:var(--orange)}
-.lb-panel{display:none}
-.lb-panel.active{display:block}
-.lb-block{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1.25rem}
-.lb-block h3{font-weight:700;margin-bottom:.25rem}
-.lb-meta{font-size:.85rem;color:var(--text-muted);margin-bottom:1rem}
-.lb-table{width:100%;border-collapse:collapse}
-.lb-table th{padding:.5rem .75rem;text-align:left;font-size:.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border)}
-.lb-table td{padding:.6rem .75rem;border-bottom:1px solid rgba(58,40,24,.5);font-size:.95rem}
-.lb-table tr:last-child td{border-bottom:none}
-.lb-table tr.gold td{background:rgba(212,168,80,.08);font-weight:700;color:var(--gold)}
-.lb-table tr.silver td{background:rgba(156,163,175,.06)}
-.lb-table tr.bronze td{background:rgba(240,160,32,.06)}
-.total-wins{display:inline-block;background:var(--dark3);border-radius:6px;padding:.15rem .5rem;font-size:.8rem;color:var(--orange);font-weight:700;margin-left:.5rem}
-.gallery-text{color:var(--text-muted);margin-bottom:1.5rem;max-width:600px}
-.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem}
-.gallery-item{aspect-ratio:1;border-radius:12px;overflow:hidden;background:var(--card-bg);border:1px solid var(--border);cursor:pointer;transition:transform .15s,border-color .15s}
-.gallery-item:hover{transform:scale(1.03);border-color:var(--orange)}
-.gallery-item img{width:100%;height:100%;object-fit:cover;display:block}
-.gallery-item.wide{grid-column:span 2;aspect-ratio:2}
-.form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
-label{font-weight:600;font-size:.88rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em}
-input,select,textarea{padding:.7rem 1rem;background:var(--card-bg);border:1.5px solid var(--border);border-radius:10px;color:var(--text);font-size:1rem;font-family:inherit;width:100%;transition:border-color .15s}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--orange)}
-input::placeholder{color:var(--text-muted)}
-select option{background:var(--dark2)}
-.game-summary{background:var(--card-bg);border:1px solid var(--border);border-left:4px solid var(--red);border-radius:0 12px 12px 0;padding:1rem 1.25rem;margin-bottom:2rem}
-.game-summary p{margin:.2rem 0;font-size:.95rem}
-.how{padding:0 1.5rem 4rem;text-align:center}
-.steps{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
-.step{max-width:180px}
-.step-num{width:52px;height:52px;border-radius:50%;margin:0 auto 1rem;background:var(--red);color:#fff;font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.5rem;display:flex;align-items:center;justify-content:center}
-.step p{color:var(--text-muted);font-size:.95rem}
-footer{background:var(--dark2);border-top:1px solid var(--border);padding:2.5rem 0;text-align:center;color:var(--text-muted)}
-footer strong{color:var(--text)}
-footer a{color:var(--orange)}
-.footer-note{font-size:.78rem;margin-top:.75rem;opacity:.5}
-.divider{border:none;border-top:1px solid var(--border);margin:0 1.5rem}
-.page{display:none}
-.page.active{display:block}
-.success-block{text-align:center;padding:3rem 0;display:none}
-.success-icon{font-size:5rem;margin-bottom:1rem}
-@media(max-width:640px){
-  .formats-grid{grid-template-columns:1fr}
-  .form-row{grid-template-columns:1fr}
-  .game-row{grid-template-columns:auto 1fr}
-  .game-action{grid-column:1/-1;text-align:left;display:flex;align-items:center;gap:1rem}
-  .gallery-grid{grid-template-columns:repeat(2,1fr)}
-  .gallery-item.wide{grid-column:span 1;aspect-ratio:1}
-  .hero-logos img{height:56px}
-  .nav-links{gap:.75rem}
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>@import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;900&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --red:        #E8341A;
+    --orange:     #F5A220;
+    --cream:      #F5EDD0;
+    --bg:         #120902;
+    --surface:    #1E1005;
+    --surface2:   #2A1A0A;
+    --border:     #3A2510;
+    --text:       #F5EDD0;
+    --text-muted: #A08060;
+    --radius:     12px;
+}
+
+body { font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+a { color: var(--orange); text-decoration: none; }
+a:hover { color: var(--cream); }
+
+/* Layout */
+.container { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
+.center { text-align: center; }
+
+/* Header */
+header { background: rgba(18,9,2,.96); border-bottom: 2px solid var(--border); padding: .8rem 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(8px); }
+header nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.logo img { height: 46px; display: block; }
+.nav-links { list-style: none; display: flex; gap: 1.5rem; align-items: center; }
+.nav-links a { color: var(--cream); font-weight: 700; font-size: .9rem; text-transform: uppercase; letter-spacing: .04em; }
+.nav-links a:hover { color: var(--orange); }
+
+/* Footer */
+footer { background: #0A0500; border-top: 2px solid var(--border); padding: 2.5rem 0; text-align: center; color: var(--text-muted); margin-top: 5rem; }
+footer a { color: var(--orange); }
+footer p + p { margin-top: .4rem; }
+
+/* Buttons */
+.btn { display: inline-block; padding: .65rem 1.5rem; border-radius: 8px; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: .9rem; cursor: pointer; border: none; transition: all .15s; text-decoration: none; text-transform: uppercase; letter-spacing: .05em; }
+.btn-primary { background: var(--red); color: #fff; }
+.btn-primary:hover { background: #c9280f; color: #fff; transform: translateY(-1px); text-decoration: none; }
+.btn-orange { background: var(--orange); color: #1a0900; }
+.btn-orange:hover { background: #e0920e; color: #1a0900; transform: translateY(-1px); text-decoration: none; }
+.btn-outline { background: transparent; border: 2px solid var(--orange); color: var(--orange); }
+.btn-outline:hover { background: var(--orange); color: #1a0900; text-decoration: none; }
+.btn-disabled { background: var(--surface2); color: var(--text-muted); cursor: not-allowed; }
+.btn-large { padding: .9rem 2.2rem; font-size: 1.05rem; }
+
+/* Hero */
+.hero { position: relative; min-height: 540px; display: flex; align-items: center; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background: url('https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo4.jpg') center/cover no-repeat; filter: brightness(.3) saturate(1.3); z-index: 0; }
+.hero-content { position: relative; z-index: 1; padding: 4rem 0; width: 100%; }
+.hero-content .container { text-align: center; }
+.hero-tagline { font-size: .85rem; text-transform: uppercase; letter-spacing: .18em; color: var(--orange); font-weight: 700; margin-bottom: 1.5rem; }
+.hero-brands { display: flex; gap: 2.5rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-bottom: 2rem; }
+.hero-brands img { height: 88px; filter: drop-shadow(0 4px 20px rgba(0,0,0,.8)); }
+.hero-sub { font-size: 1.1rem; color: var(--cream); opacity: .85; max-width: 520px; margin: 0 auto 2rem; }
+.hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* Section titles */
+.section-title { font-family: 'Russo One', sans-serif; font-size: clamp(1.4rem, 3vw, 2rem); color: var(--cream); margin-bottom: 1.5rem; }
+.section-title span { color: var(--orange); }
+
+/* Formats */
+.formats { padding: 4rem 1.5rem; }
+.formats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.format-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; text-align: center; transition: transform .2s, border-color .2s; }
+.format-card:hover { transform: translateY(-4px); border-color: var(--orange); }
+.format-logo { margin-bottom: 1.2rem; }
+.format-logo img { height: 60px; }
+.format-card p { color: var(--text-muted); font-size: .95rem; line-height: 1.6; }
+
+/* Games grid */
+.upcoming { padding: 0 1.5rem 4rem; }
+.games-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.25rem; margin-bottom: 2rem; }
+.game-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; display: flex; flex-direction: column; gap: .5rem; transition: border-color .2s, transform .2s; }
+.game-card:hover { border-color: var(--orange); transform: translateY(-3px); }
+.game-card h3 { font-size: 1.05rem; color: var(--cream); }
+.game-meta { color: var(--text-muted); font-size: .9rem; }
+.game-type { font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; padding: .2rem .7rem; border-radius: 4px; width: fit-content; }
+.game-type.quiz  { background: rgba(232,52,26,.15); color: #FF6B50; border: 1px solid rgba(232,52,26,.3); }
+.game-type.music { background: rgba(245,162,32,.15); color: var(--orange); border: 1px solid rgba(245,162,32,.3); }
+
+/* How it works */
+.how-it-works { padding: 0 1.5rem 4rem; text-align: center; }
+.steps { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+.step { max-width: 200px; }
+.step-num { width: 52px; height: 52px; border-radius: 50%; background: var(--red); color: #fff; font-family: 'Russo One', sans-serif; font-size: 1.4rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; box-shadow: 0 4px 16px rgba(232,52,26,.4); }
+.step p { color: var(--text-muted); }
+
+/* Gallery */
+.gallery { padding: 0 1.5rem 4rem; }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; margin-top: 1.5rem; }
+.gallery-item { border-radius: 8px; overflow: hidden; aspect-ratio: 4/3; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s, filter .3s; filter: brightness(.85) saturate(1.1); }
+.gallery-item:hover img { transform: scale(1.05); filter: brightness(1) saturate(1.2); }
+
+/* Schedule */
+.page-section { padding: 2.5rem 1.5rem; }
+.page-section h1 { font-family: 'Russo One', sans-serif; font-size: 2rem; margin-bottom: 1.5rem; color: var(--cream); }
+.games-list { display: flex; flex-direction: column; gap: 1rem; }
+.game-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; display: grid; grid-template-columns: 3.5rem 1fr auto; gap: 1rem; align-items: center; transition: border-color .2s; }
+.game-row:hover { border-color: var(--orange); }
+.game-row-badge { width: 3.5rem; height: 3.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+.game-row-badge.quiz  { background: rgba(232,52,26,.12); }
+.game-row-badge.music { background: rgba(245,162,32,.12); }
+.game-row-info h3 { margin-bottom: .25rem; color: var(--cream); }
+.game-row-info p { color: var(--text-muted); font-size: .9rem; }
+.game-row-action { text-align: right; min-width: 130px; }
+.price { font-weight: 800; font-size: 1.15rem; color: var(--orange); margin-bottom: .25rem; }
+.spots { font-size: .85rem; color: #4ade80; margin-bottom: .5rem; }
+.spots.low { color: #f87171; }
+.text-muted { color: var(--text-muted); font-size: .9rem; }
+.empty-state { color: var(--text-muted); font-size: 1.1rem; padding: 2rem 0; }
+
+/* Register form */
+.form-page { max-width: 600px; }
+.back-link { color: var(--text-muted); display: inline-block; margin-bottom: 1rem; font-size: .9rem; }
+.back-link:hover { color: var(--orange); }
+.game-summary { background: var(--surface); border-left: 4px solid var(--orange); padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0; margin-bottom: 2rem; }
+.game-summary p { margin: .2rem 0; color: var(--text-muted); }
+.game-summary strong { color: var(--cream); font-size: 1.1rem; }
+.reg-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: .4rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+label { font-weight: 700; font-size: .9rem; color: var(--cream); }
+input[type="text"], input[type="tel"], input[type="email"], input[type="number"], input[type="password"], input[type="datetime-local"], select, textarea { padding: .65rem 1rem; background: var(--surface); border: 1.5px solid var(--border); border-radius: 8px; font-size: 1rem; font-family: inherit; color: var(--cream); width: 100%; transition: border-color .15s; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--orange); }
+select option { background: var(--surface2); }
+.form-note { font-size: .8rem; color: var(--text-muted); margin-top: .5rem; }
+.alert { padding: .75rem 1rem; border-radius: 8px; margin-bottom: 1rem; }
+.alert-error { background: rgba(239,68,68,.1); color: #f87171; border: 1px solid rgba(239,68,68,.3); }
+
+/* Success */
+.success-icon { font-size: 5rem; margin: 2rem 0 1rem; }
+.success-sub { color: var(--text-muted); margin-top: .5rem; }
+
+/* Leaderboard */
+.leaderboard-tabs { display: flex; gap: .5rem; margin-bottom: 2rem; }
+.lb-tab { padding: .5rem 1.2rem; border-radius: 8px; border: 1.5px solid var(--border); background: transparent; color: var(--text-muted); font-weight: 700; font-size: .9rem; cursor: pointer; text-transform: uppercase; letter-spacing: .04em; transition: all .15s; }
+.lb-tab.active { background: var(--orange); border-color: var(--orange); color: #1a0900; }
+.leaderboard-block { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.5rem; }
+.leaderboard-block h2 { font-size: 1.1rem; color: var(--cream); margin-bottom: .25rem; }
+.lb-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+.lb-table th { padding: .6rem .75rem; color: var(--text-muted); font-size: .8rem; text-transform: uppercase; border-bottom: 1px solid var(--border); text-align: left; }
+.lb-table td { padding: .6rem .75rem; border-bottom: 1px solid var(--border); color: var(--text); }
+.lb-table tr.gold td   { color: #FFD700; font-weight: 800; }
+.lb-table tr.silver td { color: #C0C0C0; }
+.lb-table tr.bronze td { color: #CD7F32; }
+.overall-table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+.overall-table th { padding: .75rem 1rem; background: var(--surface2); color: var(--text-muted); font-size: .8rem; text-transform: uppercase; text-align: left; border-bottom: 1px solid var(--border); }
+.overall-table td { padding: .75rem 1rem; border-bottom: 1px solid var(--border); color: var(--text); }
+.overall-table tr:first-child td { color: #FFD700; font-weight: 800; }
+.overall-table tr:nth-child(2) td { color: #C0C0C0; }
+.overall-table tr:nth-child(3) td { color: #CD7F32; }
+
+/* Admin */
+.admin-body { background: #0D0600; }
+.admin-layout { display: flex; min-height: 100vh; }
+.admin-sidebar { width: 220px; background: var(--surface); border-right: 1px solid var(--border); padding: 1.5rem 0; flex-shrink: 0; }
+.admin-logo { font-family: 'Russo One', sans-serif; font-size: 1rem; padding: 0 1.5rem 1.5rem; border-bottom: 1px solid var(--border); color: var(--orange); }
+.admin-sidebar nav { padding-top: 1rem; }
+.admin-sidebar nav a { display: block; padding: .6rem 1.5rem; color: var(--text-muted); font-weight: 600; }
+.admin-sidebar nav a:hover { background: var(--surface2); color: var(--cream); text-decoration: none; }
+.admin-sidebar nav a.logout { color: #f87171; margin-top: 2rem; }
+.admin-main { flex: 1; padding: 2rem; overflow-y: auto; }
+.admin-main h1 { font-family: 'Russo One', sans-serif; font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--cream); }
+.admin-login { max-width: 360px; margin: 8rem auto; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; }
+.admin-login h1 { margin-bottom: 1.5rem; }
+.admin-login .form-group { margin-bottom: 1rem; }
+.admin-stats { display: flex; gap: 1rem; margin-bottom: 2rem; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.75rem; text-align: center; min-width: 120px; }
+.stat-num { font-family: 'Russo One', sans-serif; font-size: 2rem; color: var(--orange); }
+.stat-label { font-size: .85rem; color: var(--text-muted); }
+.admin-table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+.admin-table th { background: var(--surface2); padding: .75rem 1rem; font-size: .8rem; color: var(--text-muted); text-transform: uppercase; text-align: left; border-bottom: 1px solid var(--border); }
+.admin-table td { padding: .75rem 1rem; border-bottom: 1px solid var(--border); font-size: .95rem; color: var(--text); }
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tr.inactive td { opacity: .4; }
+.page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+.page-header h1 { margin-bottom: 0; }
+.admin-form { max-width: 560px; display: flex; flex-direction: column; gap: 1rem; }
+.filter-form select { padding: .4rem .8rem; }
+.checkbox-group label { display: flex; align-items: center; gap: .5rem; cursor: pointer; }
+.btn-small { padding: .3rem .7rem; border: none; border-radius: 6px; cursor: pointer; font-size: .85rem; background: var(--surface2); color: var(--text-muted); }
+.btn-small.confirmed { background: rgba(74,222,128,.1); color: #4ade80; }
+.results-block { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 2rem; }
+.results-block h2 { margin-bottom: 1rem; color: var(--cream); }
+
+/* Responsive */
+@media (max-width: 640px) {
+    .formats-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .game-row { grid-template-columns: 2.5rem 1fr; }
+    .game-row-action { grid-column: 1 / -1; text-align: left; }
+    .hero-brands img { height: 56px; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .admin-layout { flex-direction: column; }
+    .admin-sidebar { width: 100%; }
+    .nav-links { gap: .75rem; }
+    .hero-brands { gap: 1.5rem; }
 }
 </style>
 </head>
 <body>
-
-<header>
-<nav class="container">
-  <a href="#" class="logo" onclick="return nav('home')"><span>Поумничай</span> мне тут!</a>
+<header><nav class="container">
+  <a href="#" class="logo" onclick="showPage('home');return false"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/logo-quiz.png" alt="Поумничай мне тут!"></a>
   <ul class="nav-links">
-    <li><a href="#" onclick="return nav('schedule')">Расписание</a></li>
-    <li><a href="#" onclick="return nav('leaderboard')">Лидеры</a></li>
-    <li><a href="#" onclick="return nav('gallery')">Фото</a></li>
-    <li><a href="#" class="hot" onclick="return nav('register')">Записаться</a></li>
+    <li><a href="#" onclick="showPage('schedule');return false">Расписание</a></li>
+    <li><a href="#" onclick="showPage('leaderboard');return false">Лидеры</a></li>
+    <li><a href="#" onclick="showPage('schedule');return false" class="btn btn-primary" style="padding:.4rem 1rem;font-size:.85rem">Записаться</a></li>
   </ul>
-</nav>
-</header>
+</nav></header>
 
-<!-- HOME -->
-<div id="page-home" class="page active">
-  <section class="hero">
-    <div class="container">
-      <div class="hero-logos">
-        <img src="static/images/logo-quiz.png" alt="Поумничай мне тут!">
-        <img src="static/images/logo-hitloto.png" alt="Хит Лото">
-      </div>
-      <h1>Живой формат для тех,<br>кто любит <em>думать</em> и петь</h1>
-      <p class="hero-sub">Думаешь, ты самый умный и знаешь все песни? Приходи и проверь</p>
-      <div class="hero-tags">
-        <span class="tag hot">вопросы</span>
-        <span class="tag">музыка</span>
-        <span class="tag">мемы</span>
-        <span class="tag">призы</span>
-        <span class="tag">никакой духоты</span>
-      </div>
-      <a href="#" class="btn btn-red btn-large" onclick="return nav('schedule')">Ближайшие игры</a>
-    </div>
-  </section>
-  <section class="formats container">
-    <div class="section-header">
-      <h2 class="section-title">Наши форматы</h2>
-    </div>
-    <div class="formats-grid">
-      <div class="format-card quiz">
-        <img src="static/images/logo-quiz.png" class="format-logo" alt="">
-        <p>Командная интеллектуальная игра из шести раундов, где важны логика, внимание к деталям и чувство юмора. Игра длится около двух часов. В команде от 2 до 10 человек — игра открыта для всех.</p>
-        <a href="#" onclick="return nav('register')" class="btn btn-outline btn-sm">Записаться</a>
-      </div>
-      <div class="format-card music">
-        <img src="static/images/logo-hitloto.png" class="format-logo" alt="">
-        <p>Музыкальный формат — под каждым числом знакомая песня. Просто слушайте треки и отмечайте совпадения в карточке. Здесь нет сложных вопросов — только музыка, азарт и удача.</p>
-        <a href="#" onclick="return nav('register')" class="btn btn-outline btn-sm">Записаться</a>
-      </div>
-    </div>
-  </section>
-  <hr class="divider">
-  <section class="container" style="padding:3rem 1.5rem">
-    <div class="section-header">
-      <h2 class="section-title">Ближайшие игры</h2>
-      <a href="#" onclick="return nav('schedule')" class="btn btn-outline btn-sm">Все игры →</a>
-    </div>
-    <div class="games-list">
-      <div class="game-row">
-        <div class="game-dot quiz">🧠</div>
-        <div class="game-info">
-          <h3>Поумничай мне тут!</h3>
-          <p>📅 18 марта, 20:00 &nbsp;·&nbsp; 📍 Гастробар «Рельс», Нахабино</p>
-        </div>
-        <div class="game-action">
-          <div class="price">500 ₽/чел</div>
-          <div class="spots ok">Мест: 14</div>
-          <a href="#" class="btn btn-red btn-sm" onclick="return nav('register')">Записаться</a>
-        </div>
-      </div>
-      <div class="game-row">
-        <div class="game-dot music">🎵</div>
-        <div class="game-info">
-          <h3>Хит Лото</h3>
-          <p>📅 20 марта, 19:00 &nbsp;·&nbsp; 📍 Красногорск, Подмосковный бул., 3А</p>
-        </div>
-        <div class="game-action">
-          <div class="price">400 ₽/чел</div>
-          <div class="spots ok">Мест: 10</div>
-          <a href="#" class="btn btn-red btn-sm" onclick="return nav('register')">Записаться</a>
-        </div>
-      </div>
-      <div class="game-row">
-        <div class="game-dot quiz">🧠</div>
-        <div class="game-info">
-          <h3>Поумничай мне тут!</h3>
-          <p>📅 25 марта, 20:00 &nbsp;·&nbsp; 📍 Гастробар «Рельс», Нахабино</p>
-        </div>
-        <div class="game-action">
-          <div class="price">500 ₽/чел</div>
-          <div class="spots ok">Мест: 20</div>
-          <a href="#" class="btn btn-red btn-sm" onclick="return nav('register')">Записаться</a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <hr class="divider">
-  <section class="how container" style="padding-top:3rem">
-    <h2 class="section-title" style="margin-bottom:2rem">Как это работает</h2>
-    <div class="steps">
-      <div class="step"><div class="step-num">1</div><p>Выбери игру в расписании</p></div>
-      <div class="step"><div class="step-num">2</div><p>Запишись командой (2–10 чел.)</p></div>
-      <div class="step"><div class="step-num">3</div><p>Приходи и побеждай!</p></div>
-    </div>
-  </section>
-</div>
-
-<!-- SCHEDULE -->
-<div id="page-schedule" class="page">
-  <section class="container" style="padding:2.5rem 1.5rem 4rem">
-    <h1 class="section-title">Расписание игр</h1>
-    <div class="games-list">
-      <div class="game-row">
-        <div class="game-dot quiz">🧠</div>
-        <div class="game-info">
-          <h3>Поумничай мне тут!</h3>
-          <p>📅 18 марта, 20:00 &nbsp;·&nbsp; 📍 Гастробар «Рельс», ул. Вокзальная, 15А, Нахабино</p>
-          <p>Классический квиз — 6 раундов, вопросы на разные темы и море позитива</p>
-        </div>
-        <div class="game-action">
-          <div class="price">500 ₽/чел</div>
-          <div class="spots ok">Мест: 14</div>
-          <a href="#" class="btn btn-red btn-sm" onclick="return nav('register')">Записаться</a>
-        </div>
-      </div>
-      <div class="game-row">
-        <div class="game-dot music">🎵</div>
-        <div class="game-info">
-          <h3>Хит Лото</h3>
-          <p>📅 20 марта, 19:00 &nbsp;·&nbsp; 📍 Красногорск, Подмосковный бул., 3А</p>
-          <p>Знакомые хиты разных жанров и эпох — отмечайте совпадения и соревнуйтесь за приз</p>
-        </div>
-        <div class="game-action">
-          <div class="price">400 ₽/чел</div>
-          <div class="spots ok">Мест: 10</div>
-          <a href="#" class="btn btn-red btn-sm" onclick="return nav('register')">Записаться</a>
-        </div>
-      </div>
-      <div class="game-row">
-        <div class="game-dot quiz">🧠</div>
-        <div class="game-info">
-          <h3>Поумничай мне тут!</h3>
-          <p>📅 25 марта, 20:00 &nbsp;·&nbsp; 📍 Гастробар «Рельс», ул. Вокзальная, 15А, Нахабино</p>
-          <p>Классический квиз — 6 раундов</p>
-        </div>
-        <div class="game-action">
-          <div class="price">500 ₽/чел</div>
-          <div class="spots ok">Мест: 20</div>
-          <a href="#" class="btn btn-red btn-sm" onclick="return nav('register')">Записаться</a>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- LEADERBOARD -->
-<div id="page-leaderboard" class="page">
-  <section class="container" style="padding:2.5rem 1.5rem 4rem">
-    <h1 class="section-title">Таблица лидеров</h1>
-    <div class="lb-tabs">
-      <div class="lb-tab active" onclick="lbTab(this,'lb-last')">Последние игры</div>
-      <div class="lb-tab" onclick="lbTab(this,'lb-total')">Общий зачёт</div>
-    </div>
-    <div id="lb-last" class="lb-panel active">
-      <div class="lb-block">
-        <h3>Поумничай мне тут! — 27 января</h3>
-        <div class="lb-meta">📍 Гастробар «Рельс», Нахабино</div>
-        <table class="lb-table">
-          <thead><tr><th>Место</th><th>Команда</th><th>Очки</th></tr></thead>
-          <tbody>
-            <tr class="gold"><td>🥇</td><td>Мозговой штурм</td><td>28</td></tr>
-            <tr class="silver"><td>🥈</td><td>Эрудиты</td><td>25</td></tr>
-            <tr class="bronze"><td>🥉</td><td>Красногорск Forever</td><td>23</td></tr>
-            <tr><td>4</td><td>Знатоки</td><td>20</td></tr>
-            <tr><td>5</td><td>Команда мечты</td><td>17</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="lb-block">
-        <h3>Хит Лото — 25 февраля</h3>
-        <div class="lb-meta">📍 Красногорск, Подмосковный бул., 3А</div>
-        <table class="lb-table">
-          <thead><tr><th>Место</th><th>Команда</th></tr></thead>
-          <tbody>
-            <tr class="gold"><td>🥇</td><td>Меломаны</td></tr>
-            <tr class="silver"><td>🥈</td><td>Старые хиты</td></tr>
-            <tr class="bronze"><td>🥉</td><td>Полный хит</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="lb-block">
-        <h3>Поумничай мне тут! — 24 декабря</h3>
-        <div class="lb-meta">📍 Гастробар «Рельс», Нахабино</div>
-        <table class="lb-table">
-          <thead><tr><th>Место</th><th>Команда</th><th>Очки</th></tr></thead>
-          <tbody>
-            <tr class="gold"><td>🥇</td><td>Знатоки</td><td>30</td></tr>
-            <tr class="silver"><td>🥈</td><td>Мозговой штурм</td><td>27</td></tr>
-            <tr class="bronze"><td>🥉</td><td>Умники</td><td>24</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div id="lb-total" class="lb-panel">
-      <div class="lb-block">
-        <h3>Квиз «Поумничай мне тут!» — сводная</h3>
-        <div class="lb-meta">Топ команд за все игры</div>
-        <table class="lb-table">
-          <thead><tr><th>#</th><th>Команда</th><th>Побед</th><th>Игр</th></tr></thead>
-          <tbody>
-            <tr class="gold"><td>🥇</td><td>Мозговой штурм <span class="total-wins">2 победы</span></td><td>2</td><td>3</td></tr>
-            <tr class="silver"><td>🥈</td><td>Знатоки</td><td>1</td><td>4</td></tr>
-            <tr class="bronze"><td>🥉</td><td>Красногорск Forever</td><td>0</td><td>3</td></tr>
-            <tr><td>4</td><td>Эрудиты</td><td>0</td><td>2</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="lb-block">
-        <h3>«Хит Лото» — сводная</h3>
-        <div class="lb-meta">Топ команд за все игры</div>
-        <table class="lb-table">
-          <thead><tr><th>#</th><th>Команда</th><th>Побед</th><th>Игр</th></tr></thead>
-          <tbody>
-            <tr class="gold"><td>🥇</td><td>Меломаны <span class="total-wins">1 победа</span></td><td>1</td><td>2</td></tr>
-            <tr class="silver"><td>🥈</td><td>Старые хиты</td><td>0</td><td>2</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- GALLERY -->
-<div id="page-gallery" class="page">
-  <section class="container" style="padding:2.5rem 1.5rem 4rem">
-    <h1 class="section-title">Фотогалерея</h1>
-    <p class="gallery-text">Настоящие моменты наших вечеров. Обсуждения за столами, финальные раунды и искренние эмоции после победы.</p>
-    <div class="gallery-grid">
-      <div class="gallery-item wide"><img src="https://static.tildacdn.com/tild3663-6235-4335-b963-313637333437/718A7710.jpg" alt=""></div>
-      <div class="gallery-item"><img src="https://static.tildacdn.com/tild6562-3566-4663-b364-616665623730/718A0706.jpg" alt=""></div>
-      <div class="gallery-item"><img src="https://static.tildacdn.com/tild6466-6263-4564-b939-303038303632/718A9486.jpg" alt=""></div>
-      <div class="gallery-item"><img src="https://static.tildacdn.com/tild3462-3162-4432-a666-336663666430/718A7420.jpg" alt=""></div>
-      <div class="gallery-item"><img src="https://static.tildacdn.com/tild3332-3738-4537-b635-343566356432/718A9309.jpg" alt=""></div>
-      <div class="gallery-item wide"><img src="https://static.tildacdn.com/tild3165-3839-4635-b233-636239343263/718A0624.jpg" alt=""></div>
-      <div class="gallery-item"><img src="https://optim.tildacdn.com/tild6562-6437-4933-b665-376338363436/-/cover/545x490/center/center/-/format/webp/718A0454.jpg.webp" alt=""></div>
-      <div class="gallery-item"><img src="https://optim.tildacdn.com/tild6661-3166-4635-a434-323735316333/-/cover/545x490/center/center/-/format/webp/718A0417.jpg.webp" alt=""></div>
-    </div>
-  </section>
-</div>
-
-<!-- REGISTER -->
-<div id="page-register" class="page">
-  <section class="container" style="padding:2.5rem 1.5rem 4rem;max-width:680px">
-    <h1 class="section-title">Регистрация</h1>
-    <p style="color:var(--text-muted);margin-bottom:2rem">Выбирай дату. Собирай команду. Умничай по делу!</p>
-    <div id="reg-wrap">
-      <div class="game-summary">
-        <p><strong>Поумничай мне тут!</strong></p>
-        <p>📅 18 марта, 20:00 &nbsp;·&nbsp; 📍 Гастробар «Рельс», Нахабино</p>
-        <p>💰 500 ₽/персона</p>
-        <p style="color:#4ade80;font-size:.9rem;margin-top:.3rem">Свободных мест: 14</p>
-      </div>
-      <form onsubmit="return submitReg(event)">
-        <div class="form-group"><label>Название команды *</label><input type="text" required placeholder="Например: Красногорск Forever"></div>
-        <div class="form-group"><label>Имя контактного лица *</label><input type="text" required placeholder="Ваше имя"></div>
-        <div class="form-row">
-          <div class="form-group"><label>Телефон</label><input type="tel" placeholder="+7 (999) 123-45-67"></div>
-          <div class="form-group"><label>Email</label><input type="email" placeholder="you@example.com"></div>
-        </div>
-        <div class="form-group">
-          <label>Количество игроков</label>
-          <select><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
-        </div>
-        <div class="form-group"><label>Комментарий</label><textarea rows="3" placeholder="Вопросы или пожелания"></textarea></div>
-        <button type="submit" class="btn btn-red btn-large" style="width:100%">Записаться</button>
-        <p style="font-size:.8rem;color:var(--text-muted);margin-top:.75rem">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
-      </form>
-    </div>
-    <div class="success-block" id="reg-success">
-      <div class="success-icon">🎉</div>
-      <h2 style="font-family:'Montserrat',sans-serif;font-size:2rem;margin-bottom:.75rem">Готово!</h2>
-      <p>Ты записан — увидимся на игре!</p>
-      <a href="#" class="btn btn-outline" style="margin-top:1.5rem" onclick="return nav('schedule')">Другие игры</a>
-    </div>
-  </section>
-</div>
-
-<footer>
-  <div class="container">
-    <p><strong>Поумничай мне тут!</strong> &nbsp;·&nbsp; Красногорск и Московская область</p>
-    <p style="margin-top:.5rem">По вопросам: <a href="https://t.me/Vlad_Ah">Telegram @Vlad_Ah</a></p>
-    <p class="footer-note">⚠️ Preview-версия. Форма регистрации работает только на боевом сервере.</p>
+<div id="page-home" style="display:block">
+<section class="hero"><div class="hero-bg"></div><div class="hero-content"><div class="container">
+  <p class="hero-tagline">Красногорск · Московская область</p>
+  <div class="hero-brands"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/logo-quiz.png" alt="Поумничай мне тут!"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/logo-hitloto.png" alt="Хит лото"></div>
+  <p class="hero-sub">Интеллектуальные квизы и музыкальное лото в лучших барах района — каждую неделю</p>
+  <div class="hero-actions">
+    <a href="#" onclick="showPage('schedule');return false" class="btn btn-primary btn-large">Ближайшие игры</a>
+    <a href="#" onclick="showPage('leaderboard');return false" class="btn btn-outline btn-large">Таблица лидеров</a>
   </div>
-</footer>
+</div></div></section>
+
+<section class="formats container">
+  <h2 class="section-title center">Два формата — <span>один кайф</span></h2>
+  <div class="formats-grid">
+    <div class="format-card"><div class="format-logo"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/logo-quiz.png"></div><p>Классический интеллектуальный квиз. Вопросы на эрудицию, логику, кино, музыку, спорт. Команда до 6 человек.</p></div>
+    <div class="format-card"><div class="format-logo"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/logo-hitloto.png"></div><p>Музыкальное лото — угадай мелодию за несколько секунд. Треки из разных эпох. Весело и ностальгично!</p></div>
+  </div>
+</section>
+
+<section class="upcoming container">
+  <h2 class="section-title">Ближайшие <span>игры</span></h2>
+  <div class="games-grid">
+    <div class="game-card"><div class="game-type quiz">Квиз</div><h3>Поумничай мне тут!</h3><p class="game-meta">📅 20.03.2026 в 19:00</p><p class="game-meta">📍 Бар «Соседи»</p><p class="game-meta">💰 500 ₽ с команды</p><a href="#" onclick="showPage('register');return false" class="btn btn-primary" style="margin-top:1rem">Записаться</a></div>
+    <div class="game-card"><div class="game-type music">Хит лото</div><h3>Хит лото</h3><p class="game-meta">📅 22.03.2026 в 19:30</p><p class="game-meta">📍 Кафе «Центр»</p><p class="game-meta">💰 400 ₽ с команды</p><a href="#" onclick="showPage('register');return false" class="btn btn-primary" style="margin-top:1rem">Записаться</a></div>
+    <div class="game-card"><div class="game-type quiz">Квиз</div><h3>Поумничай мне тут!</h3><p class="game-meta">📅 27.03.2026 в 19:00</p><p class="game-meta">📍 Паб «Главный»</p><p class="game-meta">💰 500 ₽ с команды</p><a href="#" onclick="showPage('register');return false" class="btn btn-primary" style="margin-top:1rem">Записаться</a></div>
+  </div>
+  <div class="center"><a href="#" onclick="showPage('schedule');return false" class="btn btn-outline">Все игры →</a></div>
+</section>
+
+<section class="how-it-works container">
+  <h2 class="section-title center">Как это <span>работает</span></h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><p>Выбери игру в расписании</p></div>
+    <div class="step"><div class="step-num">2</div><p>Запишись командой (1–6 человек)</p></div>
+    <div class="step"><div class="step-num">3</div><p>Приходи, играй, побеждай!</p></div>
+  </div>
+</section>
+
+<section class="gallery container">
+  <h2 class="section-title">Как это <span>выглядит</span></h2>
+  <div class="gallery-grid"><div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml6.jpg" loading="lazy"></div><div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml1.jpg" loading="lazy"></div><div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo2.jpg" loading="lazy"></div><div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo4.jpg" loading="lazy"></div><div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml9.jpg" loading="lazy"></div><div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml10.jpg" loading="lazy"></div><div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml4.jpg" loading="lazy"></div><div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml12.jpg" loading="lazy"></div><div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml11.jpg" loading="lazy"></div></div>
+</section>
+</div>
+
+<div id="page-schedule" style="display:none">
+<section class="container page-section"><h1>Расписание игр</h1>
+<div class="games-list">
+  <div class="game-row"><div class="game-row-badge quiz">🧠</div><div class="game-row-info"><h3>Поумничай мне тут!</h3><p>📅 20.03.2026, 19:00 · 📍 Бар «Соседи»</p></div><div class="game-row-action"><p class="price">500 ₽</p><p class="spots">Мест: 15</p><a href="#" onclick="showPage('register');return false" class="btn btn-primary">Записаться</a></div></div>
+  <div class="game-row"><div class="game-row-badge music">🎵</div><div class="game-row-info"><h3>Хит лото</h3><p>📅 22.03.2026, 19:30 · 📍 Кафе «Центр»</p></div><div class="game-row-action"><p class="price">400 ₽</p><p class="spots">Мест: 12</p><a href="#" onclick="showPage('register');return false" class="btn btn-primary">Записаться</a></div></div>
+  <div class="game-row"><div class="game-row-badge quiz">🧠</div><div class="game-row-info"><h3>Поумничай мне тут!</h3><p>📅 27.03.2026, 19:00 · 📍 Паб «Главный»</p></div><div class="game-row-action"><p class="price">500 ₽</p><p class="spots">Мест: 20</p><a href="#" onclick="showPage('register');return false" class="btn btn-primary">Записаться</a></div></div>
+</div>
+</section>
+</div>
+
+<div id="page-register" style="display:none">
+<section class="container page-section form-page">
+  <a href="#" onclick="showPage('schedule');return false" class="back-link">← Расписание</a>
+  <h1>Регистрация</h1>
+  <div class="game-summary"><p><strong>Поумничай мне тут!</strong></p><p>📅 20.03.2026 в 19:00</p><p>📍 Бар «Соседи»</p><p>💰 500 ₽ с команды</p><p class="spots">Свободных мест: 15</p></div>
+  <form class="reg-form" onsubmit="showPage('success');return false">
+    <div class="form-group"><label>Название команды *</label><input type="text" required placeholder="Умники и умницы"></div>
+    <div class="form-group"><label>Контактное лицо *</label><input type="text" required placeholder="Ваше имя"></div>
+    <div class="form-row"><div class="form-group"><label>Телефон</label><input type="tel" placeholder="+7 (999) 123-45-67"></div><div class="form-group"><label>Email</label><input type="email" placeholder="you@example.com"></div></div>
+    <div class="form-group"><label>Количество игроков</label><select><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+    <div class="form-group"><label>Комментарий</label><textarea rows="3" placeholder="Любые вопросы"></textarea></div>
+    <button type="submit" class="btn btn-primary btn-large">Записаться</button>
+    <p class="form-note">* Обязательные поля. Телефон или email — хотя бы одно из двух.</p>
+  </form>
+</section>
+</div>
+
+<div id="page-success" style="display:none">
+<section class="container page-section center">
+  <div class="success-icon">🎉</div><h1>Готово!</h1>
+  <p>Ты записан на <strong>Поумничай мне тут!</strong></p><p>📅 20.03.2026 в 19:00 · 📍 Бар «Соседи»</p>
+  <p class="success-sub">Увидимся на игре!</p>
+  <a href="#" onclick="showPage('schedule');return false" class="btn btn-outline" style="margin-top:1.5rem">Другие игры</a>
+</section>
+</div>
+
+<div id="page-leaderboard" style="display:none">
+<section class="container page-section"><h1>Таблица лидеров</h1>
+  <div class="leaderboard-tabs">
+    <button class="lb-tab active" onclick="showLbTab('overall',this)">Общий зачёт</button>
+    <button class="lb-tab" onclick="showLbTab('bygame',this)">По играм</button>
+  </div>
+  <div id="lb-overall">
+    <table class="overall-table"><thead><tr><th>#</th><th>Команда</th><th>Игр</th><th>Очков</th><th>Побед</th></tr></thead>
+    <tbody>
+      <tr><td>🥇</td><td>Мозговой штурм</td><td>8</td><td>224</td><td>3</td></tr>
+      <tr><td>🥈</td><td>Эрудиты</td><td>7</td><td>196</td><td>2</td></tr>
+      <tr><td>🥉</td><td>Красногорск Forever</td><td>6</td><td>168</td><td>1</td></tr>
+      <tr><td>4</td><td>Знатоки</td><td>5</td><td>140</td><td>0</td></tr>
+    </tbody></table>
+  </div>
+  <div id="lb-bygame" style="display:none">
+    <div class="leaderboard-block"><h2>Поумничай мне тут! — 14.03.2026</h2><p class="text-muted">📍 Бар «Соседи»</p>
+    <table class="lb-table"><thead><tr><th>Место</th><th>Команда</th><th>Очки</th></tr></thead>
+    <tbody><tr class="gold"><td>🥇</td><td>Мозговой штурм</td><td>28</td></tr><tr class="silver"><td>🥈</td><td>Эрудиты</td><td>25</td></tr><tr class="bronze"><td>🥉</td><td>Красногорск Forever</td><td>23</td></tr></tbody></table></div>
+  </div>
+</section>
+</div>
+
+<footer><div class="container">
+  <div style="display:flex;gap:2rem;justify-content:center;align-items:center;margin-bottom:1rem;flex-wrap:wrap">
+    <img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/logo-quiz.png" style="height:34px;opacity:.6"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/logo-hitloto.png" style="height:34px;opacity:.6">
+  </div>
+  <p>Квизы и музыкальное лото в Красногорске и Московской области</p>
+  <p style="margin-top:.5rem">Вопросы и запись: <a href="https://t.me/Vlad_Ah">Telegram</a></p>
+  <p style="margin-top:.5rem;font-size:.75rem;opacity:.4">⚠️ Статический preview. Форма не сохраняет данные.</p>
+</div></footer>
 
 <script>
-function nav(page){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  const el=document.getElementById('page-'+page);
-  if(el){el.classList.add('active');window.scrollTo(0,0);}
-  return false;
+function showPage(name) {
+  ['home','schedule','register','success','leaderboard'].forEach(p => document.getElementById('page-'+p).style.display='none');
+  document.getElementById('page-'+name).style.display='block';
+  window.scrollTo(0,0);
 }
-function lbTab(btn,id){
-  document.querySelectorAll('.lb-tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.lb-panel').forEach(p=>p.classList.remove('active'));
+function showLbTab(name, btn) {
+  document.querySelectorAll('.lb-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById(id).classList.add('active');
-}
-function submitReg(e){
-  e.preventDefault();
-  document.getElementById('reg-wrap').style.display='none';
-  const s=document.getElementById('reg-success');
-  s.style.display='block';
-  return false;
+  document.getElementById('lb-overall').style.display = name==='overall'?'block':'none';
+  document.getElementById('lb-bygame').style.display = name==='bygame'?'block':'none';
 }
 </script>
-</body>
-</html>
+</body></html>

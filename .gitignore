@@ -1,7 +1,0 @@
-.venv_site/
-.venv/
-__pycache__/
-*.pyc
-*.db
-screenshots/
-.env
