@@ -3,30 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Поумничай мне тут!{% endblock %}</title>
-    <meta name="description" content="{% block meta_description %}Квизы и музыкальное лото в Красногорске и Московской области{% endblock %}">
+    <title>{% block title %}Квизы в Красногорске — Поумничай мне тут!{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Интеллектуальные квизы и музыкальное лото в Красногорске и Московской области{% endblock %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/style.css">
     {% block head %}{% endblock %}
 </head>
 <body>
     <header>
         <nav class="container">
-            <a href="/" class="logo">🧠 Поумничай мне тут!</a>
+            <a href="/" class="logo"><img src="/static/images/logo-quiz.png" alt="Поумничай мне тут!"></a>
             <ul class="nav-links">
                 <li><a href="/schedule">Расписание</a></li>
-                <li><a href="/leaderboard">Таблица лидеров</a></li>
+                <li><a href="/leaderboard">Лидеры</a></li>
+                <li><a href="/schedule" class="btn btn-primary" style="padding:.4rem 1rem;font-size:.85rem">Записаться</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+    <main>{% block content %}{% endblock %}</main>
 
     <footer>
         <div class="container">
-            <p>© 2025 Поумничай мне тут! · Красногорск и Московская область</p>
-            <p>По вопросам: <a href="https://t.me/Vlad_Ah">Telegram</a></p>
+            <div style="display:flex;gap:2rem;justify-content:center;align-items:center;margin-bottom:1rem;flex-wrap:wrap">
+                <img src="/static/images/logo-quiz.png" alt="Поумничай мне тут!" style="height:34px;opacity:.6">
+                <img src="/static/images/logo-hitloto.png" alt="Хит лото" style="height:34px;opacity:.6">
+            </div>
+            <p>Квизы и музыкальное лото в Красногорске и Московской области</p>
+            <p style="margin-top:.5rem">Вопросы и запись: <a href="https://t.me/Vlad_Ah">Telegram</a></p>
         </div>
     </footer>
 </body>

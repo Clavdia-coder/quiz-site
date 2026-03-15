@@ -122,18 +122,34 @@ async def register_submit(
 
 @app.get("/leaderboard", response_class=HTMLResponse)
 async def leaderboard(request: Request, db: Session = Depends(get_db)):
-    # last 10 completed games with results
     games_with_results = (db.query(Game)
                           .filter(Game.game_date < datetime.utcnow())
                           .order_by(Game.game_date.desc())
-                          .limit(10).all())
+                          .limit(20).all())
     results = {}
     for g in games_with_results:
         results[g.id] = (db.query(GameResult)
                          .filter(GameResult.game_id == g.id)
                          .order_by(GameResult.place).all())
+
+    all_results = db.query(GameResult).all()
+    wins_map: dict = {}
+    games_count_map: dict = {}
+    score_map: dict = {}
+    for r in all_results:
+        wins_map[r.team_name] = wins_map.get(r.team_name, 0) + (1 if r.place == 1 else 0)
+        games_count_map[r.team_name] = games_count_map.get(r.team_name, 0) + 1
+        score_map[r.team_name] = score_map.get(r.team_name, 0) + (r.score or 0)
+
+    overall = sorted([
+        {"team_name": name, "games_count": games_count_map[name],
+         "total_score": score_map.get(name) or None, "wins": wins_map.get(name, 0)}
+        for name in games_count_map
+    ], key=lambda x: (-x["wins"], -(x["total_score"] or 0)))
+
     return templates.TemplateResponse("leaderboard.html", {
-        "request": request, "games": games_with_results, "results": results
+        "request": request, "games": games_with_results,
+        "results": results, "overall": overall,
     })
 
 

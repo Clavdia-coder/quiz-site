@@ -1,69 +1,81 @@
 {% extends "base.html" %}
 {% block title %}Квизы и музыкальное лото в Красногорске — Поумничай мне тут!{% endblock %}
-{% block meta_description %}Интеллектуальные квизы и музыкальное лото «Хит лото» в Красногорске и Московской области. Регистрируйся на ближайшую игру!{% endblock %}
 
 {% block content %}
 <section class="hero">
-    <div class="container">
-        <h1>Квизы и музыкальное лото<br>в Красногорске</h1>
-        <p class="hero-sub">Проверь эрудицию на «Поумничай мне тут!» или угадай мелодию на «Хит лото» — каждую неделю в лучших барах района</p>
-        <a href="/schedule" class="btn btn-primary">Ближайшие игры</a>
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <div class="container">
+            <p class="hero-tagline">Красногорск · Московская область</p>
+            <div class="hero-brands">
+                <img src="/static/images/logo-quiz.png" alt="Поумничай мне тут!">
+                <img src="/static/images/logo-hitloto.png" alt="Хит лото">
+            </div>
+            <p class="hero-sub">Интеллектуальные квизы и музыкальное лото в лучших барах района — каждую неделю</p>
+            <div class="hero-actions">
+                <a href="/schedule" class="btn btn-primary btn-large">Ближайшие игры</a>
+                <a href="/leaderboard" class="btn btn-outline btn-large">Таблица лидеров</a>
+            </div>
+        </div>
     </div>
 </section>
 
 <section class="formats container">
-    <div class="format-card">
-        <div class="format-icon">🧠</div>
-        <h2>Поумничай мне тут!</h2>
-        <p>Классический квиз: вопросы на эрудицию, логику, кино, спорт и многое другое. Играй командой до 6 человек.</p>
-    </div>
-    <div class="format-card">
-        <div class="format-icon">🎵</div>
-        <h2>Хит лото</h2>
-        <p>Музыкальное лото — угадай мелодию из любого жанра и эпохи. Весело, ностальгично, и для всех возрастов.</p>
+    <h2 class="section-title center">Два формата — <span>один кайф</span></h2>
+    <div class="formats-grid">
+        <div class="format-card">
+            <div class="format-logo"><img src="/static/images/logo-quiz.png" alt="Поумничай мне тут!"></div>
+            <p>Классический интеллектуальный квиз. Вопросы на эрудицию, логику, кино, музыку, спорт. Команда до 6 человек — побеждает сильнейший!</p>
+        </div>
+        <div class="format-card">
+            <div class="format-logo"><img src="/static/images/logo-hitloto.png" alt="Хит лото"></div>
+            <p>Музыкальное лото — угадай мелодию за несколько секунд. Треки из разных эпох и жанров. Весело, ностальгично, для всех возрастов!</p>
+        </div>
     </div>
 </section>
 
 {% if games %}
 <section class="upcoming container">
-    <h2>Ближайшие игры</h2>
+    <h2 class="section-title">Ближайшие <span>игры</span></h2>
     <div class="games-grid">
         {% for game in games %}
         <div class="game-card">
             <div class="game-type {{ 'quiz' if game.game_type == 'quiz' else 'music' }}">
-                {{ "🧠 Квиз" if game.game_type == "quiz" else "🎵 Хит лото" }}
+                {{ "Квиз" if game.game_type == "quiz" else "Хит лото" }}
             </div>
             <h3>{{ game.title }}</h3>
             <p class="game-meta">📅 {{ game.game_date.strftime("%d.%m.%Y в %H:%M") }}</p>
             <p class="game-meta">📍 {{ game.location }}</p>
-            {% if game.price > 0 %}
-            <p class="game-meta">💰 {{ game.price }} ₽ с команды</p>
-            {% endif %}
-            <a href="/register/{{ game.id }}" class="btn btn-primary">Записаться</a>
+            {% if game.price > 0 %}<p class="game-meta">💰 {{ game.price }} ₽ с команды</p>{% endif %}
+            <a href="/register/{{ game.id }}" class="btn btn-primary" style="margin-top:1rem">Записаться</a>
         </div>
         {% endfor %}
     </div>
-    <div class="center">
-        <a href="/schedule" class="btn btn-outline">Все игры →</a>
-    </div>
+    <div class="center"><a href="/schedule" class="btn btn-outline">Все игры →</a></div>
 </section>
 {% endif %}
 
 <section class="how-it-works container">
-    <h2>Как это работает</h2>
+    <h2 class="section-title center">Как это <span>работает</span></h2>
     <div class="steps">
-        <div class="step">
-            <div class="step-num">1</div>
-            <p>Выбери игру в расписании</p>
-        </div>
-        <div class="step">
-            <div class="step-num">2</div>
-            <p>Запишись командой (1–6 человек)</p>
-        </div>
-        <div class="step">
-            <div class="step-num">3</div>
-            <p>Приходи и побеждай!</p>
-        </div>
+        <div class="step"><div class="step-num">1</div><p>Выбери игру в расписании</p></div>
+        <div class="step"><div class="step-num">2</div><p>Запишись командой (1–6 человек)</p></div>
+        <div class="step"><div class="step-num">3</div><p>Приходи, играй, побеждай!</p></div>
+    </div>
+</section>
+
+<section class="gallery container">
+    <h2 class="section-title">Как это <span>выглядит</span></h2>
+    <div class="gallery-grid">
+        <div class="gallery-item"><img src="/static/images/photo_ml6.jpg" alt="Хит лото" loading="lazy"></div>
+        <div class="gallery-item"><img src="/static/images/photo_ml1.jpg" alt="Хит лото" loading="lazy"></div>
+        <div class="gallery-item"><img src="/static/images/photo2.jpg" alt="Поумничай мне тут!" loading="lazy"></div>
+        <div class="gallery-item"><img src="/static/images/photo4.jpg" alt="Хит лото" loading="lazy"></div>
+        <div class="gallery-item"><img src="/static/images/photo_ml9.jpg" alt="Хит лото" loading="lazy"></div>
+        <div class="gallery-item"><img src="/static/images/photo_ml10.jpg" alt="Хит лото" loading="lazy"></div>
+        <div class="gallery-item"><img src="/static/images/photo_ml4.jpg" alt="Хит лото" loading="lazy"></div>
+        <div class="gallery-item"><img src="/static/images/photo_ml12.jpg" alt="Хит лото" loading="lazy"></div>
+        <div class="gallery-item"><img src="/static/images/photo_ml11.jpg" alt="Хит лото" loading="lazy"></div>
     </div>
 </section>
 {% endblock %}

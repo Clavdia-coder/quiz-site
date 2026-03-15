@@ -5,41 +5,64 @@
 <section class="container page-section">
     <h1>Таблица лидеров</h1>
 
-    {% if games %}
-    {% for game in games %}
-    {% set res = results[game.id] %}
-    {% if res %}
-    <div class="leaderboard-block">
-        <h2>{{ game.title }} — {{ game.game_date.strftime("%d.%m.%Y") }}</h2>
-        <p class="text-muted">📍 {{ game.location }}</p>
-        <table class="lb-table">
-            <thead>
-                <tr>
-                    <th>Место</th>
-                    <th>Команда</th>
-                    {% if res[0].score is not none %}<th>Очки</th>{% endif %}
-                </tr>
-            </thead>
+    <div class="leaderboard-tabs">
+        <button class="lb-tab active" onclick="showTab('overall', this)">Общий зачёт</button>
+        <button class="lb-tab" onclick="showTab('bygame', this)">По играм</button>
+    </div>
+
+    <div id="tab-overall">
+        {% if overall %}
+        <p class="text-muted" style="margin-bottom:1.2rem">Суммарный зачёт по всем играм</p>
+        <table class="overall-table">
+            <thead><tr><th>#</th><th>Команда</th><th>Игр</th><th>Очков</th><th>Побед</th></tr></thead>
             <tbody>
-                {% for r in res %}
-                <tr class="{% if r.place == 1 %}gold{% elif r.place == 2 %}silver{% elif r.place == 3 %}bronze{% endif %}">
-                    <td>
-                        {% if r.place == 1 %}🥇
-                        {% elif r.place == 2 %}🥈
-                        {% elif r.place == 3 %}🥉
-                        {% else %}{{ r.place }}{% endif %}
-                    </td>
-                    <td>{{ r.team_name }}</td>
-                    {% if r.score is not none %}<td>{{ r.score }}</td>{% endif %}
+                {% for row in overall %}
+                <tr>
+                    <td>{% if loop.index == 1 %}🥇{% elif loop.index == 2 %}🥈{% elif loop.index == 3 %}🥉{% else %}{{ loop.index }}{% endif %}</td>
+                    <td>{{ row.team_name }}</td>
+                    <td>{{ row.games_count }}</td>
+                    <td>{{ row.total_score or '—' }}</td>
+                    <td>{{ row.wins }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+        {% else %}
+        <p class="empty-state">Результаты игр ещё не добавлены. Скоро появятся!</p>
+        {% endif %}
     </div>
-    {% endif %}
-    {% endfor %}
-    {% else %}
-    <p class="empty-state">Результаты ещё не добавлены. Скоро появятся!</p>
-    {% endif %}
+
+    <div id="tab-bygame" style="display:none">
+        {% if games %}
+        {% for game in games %}{% set res = results[game.id] %}{% if res %}
+        <div class="leaderboard-block">
+            <h2>{{ game.title }}</h2>
+            <p class="text-muted">📅 {{ game.game_date.strftime("%d.%m.%Y") }} · 📍 {{ game.location }}</p>
+            <table class="lb-table">
+                <thead><tr><th>Место</th><th>Команда</th>{% if res[0].score is not none %}<th>Очки</th>{% endif %}</tr></thead>
+                <tbody>
+                    {% for r in res %}
+                    <tr class="{% if r.place == 1 %}gold{% elif r.place == 2 %}silver{% elif r.place == 3 %}bronze{% endif %}">
+                        <td>{% if r.place == 1 %}🥇{% elif r.place == 2 %}🥈{% elif r.place == 3 %}🥉{% else %}{{ r.place }}{% endif %}</td>
+                        <td>{{ r.team_name }}</td>
+                        {% if r.score is not none %}<td>{{ r.score }}</td>{% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}{% endfor %}
+        {% else %}
+        <p class="empty-state">Результаты ещё не добавлены.</p>
+        {% endif %}
+    </div>
 </section>
+<script>
+function showTab(name, btn) {
+    document.querySelectorAll('.lb-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-overall').style.display = name === 'overall' ? 'block' : 'none';
+    document.getElementById('tab-bygame').style.display = name === 'bygame' ? 'block' : 'none';
+}
+</script>
 {% endblock %}
