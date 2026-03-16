@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Квиз и муз лото в Красногорске и Нахабино — Поумничай мне тут!</title>
+<meta name="description" content="Еженедельные квизы и музыкальное лото в барах Рельс, Ред Финч и Лаки Дэй. Играем в Красногорске и Нахабино. Бронируйте команду и приходите за эмоциями!">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Prosto+One&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#E8341A;--orange:#F5A220;--cream:#F5EDD0;--bg:#120902;--surface:#1E1005;--surface2:#2A1A0A;--border:#3A2510;--text:#F5EDD0;--text-muted:#A08060;--radius:12px}
+html{scroll-behavior:smooth;scroll-padding-top:68px}
+body{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:var(--orange);text-decoration:none}
+a:hover{color:var(--cream)}
+.particles-layer{position:fixed;inset:0;pointer-events:none;z-index:0;width:100%;height:100%}
+.page-glow{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(120px);opacity:.15}
+.page-glow-one{width:600px;height:600px;background:radial-gradient(circle,#E8341A 0%,transparent 70%);top:-200px;left:-200px}
+.page-glow-two{width:500px;height:500px;background:radial-gradient(circle,#F5A220 0%,transparent 70%);bottom:10%;right:-150px}
+.glass{background:rgba(30,16,5,.72);border:1px solid rgba(245,237,208,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+[data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
+[data-reveal].is-visible{opacity:1;transform:translateY(0)}
+.container{max-width:1000px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1}
+.center{text-align:center}
+
+/* NAV */
+.site-header{background:rgba(18,9,2,.92);border-bottom:1px solid var(--border);padding:.75rem 0;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+.site-nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{order:1}.logo img{height:40px;display:block}
+.nav-links{list-style:none;display:flex;gap:1.25rem;align-items:center;order:2}
+.nav-links a{color:var(--cream);font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.04em}
+.nav-links a:hover{color:var(--orange)}
+.nav-cta{order:3;white-space:nowrap}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;order:0}
+.nav-burger span{display:block;width:24px;height:2px;background:var(--cream);border-radius:2px;transition:transform .25s,opacity .25s}
+.nav-burger.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.is-open span:nth-child(2){opacity:0}
+.nav-burger.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* FOOTER */
+.site-footer{background:#0A0500;border-top:1px solid var(--border);padding:2.5rem 0;text-align:center;color:var(--text-muted);position:relative;z-index:1}
+.site-footer a{color:var(--orange)}
+.site-footer p+p{margin-top:.4rem}
+.footer-logos{display:flex;gap:2rem;justify-content:center;align-items:center;margin-bottom:1rem;flex-wrap:wrap}
+.footer-logos img{height:32px;opacity:.55}
+
+/* BUTTONS */
+.btn{display:inline-block;padding:.65rem 1.5rem;border-radius:8px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;cursor:pointer;border:none;transition:all .15s;text-decoration:none;text-transform:uppercase;letter-spacing:.05em}
+.btn:active{transform:scale(.96) translateY(1px)!important;opacity:.88}
+.btn-primary{background:var(--red);color:#fff}
+.btn-primary:hover{background:#c9280f;color:#fff;transform:translateY(-1px)}
+.btn-outline{background:transparent;border:2px solid var(--orange);color:var(--orange)}
+.btn-outline:hover{background:var(--orange);color:#1a0900}
+.btn-large{padding:.9rem 2.2rem;font-size:1.05rem}
+
+/* TYPOGRAPHY */
+.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.18em;color:var(--orange);font-weight:700;margin-bottom:.75rem}
+.section-title{font-family:'Prosto One',sans-serif;font-size:clamp(1.4rem,3vw,2rem);color:var(--cream);margin-bottom:1rem}
+.section-title span{color:var(--orange)}
+.section-head{margin-bottom:2.5rem}
+.split-head{display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:start}
+.split-head .eyebrow{writing-mode:vertical-rl;transform:rotate(180deg);margin-bottom:0;margin-top:.25rem}
+.split-head p:not(.eyebrow){color:var(--text-muted);margin-top:.5rem;font-size:.95rem}
+
+/* HERO */
+.hero{position:relative;padding:5rem 0 4rem;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url('https://static.tildacdn.com/tild6635-3865-4636-a635-623935383038/718A9273.jpg') center/cover no-repeat;filter:brightness(.18) saturate(1.1);z-index:0}
+.hero-content{position:relative;z-index:1}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.hero-copy{display:flex;flex-direction:column;gap:1.25rem}
+.hero-tagline{font-size:.78rem;text-transform:uppercase;letter-spacing:.18em;color:var(--orange);font-weight:700}
+.hero-title{font-family:'Prosto One',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.2;color:var(--cream)}
+.hero-title span{color:var(--orange)}
+.hero-sub{color:var(--text-muted);font-size:1rem;line-height:1.65}
+.hero-actions{display:flex;flex-direction:column;gap:.85rem;max-width:300px}
+.hero-actions .btn{width:100%;text-align:center}
+.hero-panel{display:flex;flex-direction:column;gap:1rem}
+.hero-photo-card{display:flex;flex-direction:column;align-items:stretch;border-radius:var(--radius);overflow:hidden;text-decoration:none;transition:transform .2s,border-color .2s}
+.hero-photo-card:hover{transform:translateY(-3px);border-color:rgba(245,162,32,.3);color:inherit}
+.hero-photo-wrap{width:100%;height:165px;overflow:hidden;flex-shrink:0}
+.hero-photo-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.hero-photo-card:hover .hero-photo-wrap img{transform:scale(1.04)}
+.hero-photo-label{display:flex;flex-direction:column;gap:.2rem;padding:.65rem .8rem .6rem}
+.hero-photo-label span{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted)}
+.hero-photo-label strong{font-family:'Prosto One',sans-serif;font-size:.9rem}
+.hero-photo-card-quiz .hero-photo-label strong{color:#FF6B50}
+.hero-photo-card-loto .hero-photo-label strong{color:var(--orange)}
+
+/* FORMATS */
+.formats{padding:4rem 1.5rem}
+.formats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.format-card{border-radius:var(--radius);padding:2rem;transition:transform .2s,border-color .2s}
+.format-card:hover{transform:translateY(-4px);border-color:rgba(245,162,32,.25)}
+.format-logo{margin-bottom:1rem}
+.format-logo img{height:52px}
+.format-tag{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--orange);font-weight:700;margin-bottom:.4rem}
+.format-card h3{font-family:'Prosto One',sans-serif;font-size:1.1rem;color:var(--cream);margin-bottom:.75rem}
+.format-card>p{color:var(--text-muted);font-size:.93rem;line-height:1.65;margin-bottom:1rem}
+.format-list{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.format-list li{color:var(--text-muted);font-size:.88rem;padding-left:1.1rem;position:relative}
+.format-list li::before{content:'—';position:absolute;left:0;color:var(--orange);font-weight:700}
+.format-cta{margin-top:1.25rem}
+
+/* SCHEDULE */
+.upcoming{padding:0 1.5rem 4rem}
+.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.25rem;margin-bottom:2rem}
+.game-card{border-radius:var(--radius);padding:1.5rem;display:flex;flex-direction:column;gap:.5rem;transition:border-color .2s,transform .2s}
+.game-card:hover{border-color:rgba(245,162,32,.25);transform:translateY(-3px)}
+.game-card h3{font-size:1rem;color:var(--cream);font-family:'Prosto One',sans-serif}
+.game-meta{color:var(--text-muted);font-size:.88rem;line-height:1.5}
+.game-addr{color:var(--text-muted);font-size:.82rem;opacity:.8}
+.price-meta{color:var(--orange);font-weight:700;font-size:.95rem;margin-top:.2rem}
+.game-btn{margin-top:auto;align-self:flex-start}
+.game-type{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:.2rem .7rem;border-radius:4px;width:fit-content}
+.game-type.quiz{background:rgba(232,52,26,.15);color:#FF6B50;border:1px solid rgba(232,52,26,.3)}
+.game-type.music{background:rgba(245,162,32,.15);color:var(--orange);border:1px solid rgba(245,162,32,.3)}
+
+/* IMPACT */
+.impact{padding:0 1.5rem 4rem}
+.impact-shell{border-radius:var(--radius);padding:2.5rem 2rem}
+.impact-head{margin-bottom:2rem}
+.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.impact-grid article{text-align:center}
+.impact-grid strong{display:block;font-family:'Prosto One',sans-serif;font-size:clamp(1.4rem,3vw,2rem);color:var(--orange);margin-bottom:.5rem;line-height:1.2}
+.impact-grid p{color:var(--text-muted);font-size:.88rem}
+
+/* HOW */
+.how-it-works{padding:0 1.5rem 4rem;text-align:center}
+.steps{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+.step{max-width:200px}
+.step-num{width:52px;height:52px;border-radius:50%;background:var(--red);color:#fff;font-family:'Prosto One',sans-serif;font-size:1.4rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;box-shadow:0 4px 16px rgba(232,52,26,.4)}
+.step h3{color:var(--cream);font-size:1rem;margin-bottom:.4rem}
+.step p{color:var(--text-muted);font-size:.88rem}
+
+/* LEADERBOARD */
+.leaderboard{padding:0 1.5rem 4rem}
+.lb-podium{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:1rem;margin-bottom:2rem;align-items:end}
+.lb-podium-item{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:1.25rem 1rem;border-radius:var(--radius);text-align:center;transition:transform .2s}
+.lb-podium-item:hover{transform:translateY(-3px)}
+.lb-place{font-family:'Prosto One',sans-serif;font-size:1.6rem;line-height:1}
+.lb-place-1{color:#FFD700}
+.lb-place-2{color:#C0C0C0}
+.lb-place-3{color:#CD7F32}
+.lb-podium-name{font-family:'Prosto One',sans-serif;font-size:.9rem;color:var(--cream);margin-top:.25rem}
+.lb-podium-pts{font-size:.78rem;color:var(--text-muted)}
+.lb-podium-pts strong{color:var(--orange);font-size:1.05rem}
+.lb-podium-medal{font-size:2rem;line-height:1}
+.lb-podium-first{background:linear-gradient(135deg,rgba(232,52,26,.2),rgba(245,162,32,.15));border:1px solid rgba(255,215,0,.25)}
+.lb-podium-second{background:var(--surface);border:1px solid rgba(192,192,192,.15)}
+.lb-podium-third{background:var(--surface);border:1px solid rgba(205,127,50,.15)}
+.lb-table{width:100%;border-collapse:collapse}
+.lb-table th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);padding:.6rem 1rem;border-bottom:1px solid var(--border)}
+.lb-table td{padding:.8rem 1rem;border-bottom:1px solid rgba(58,37,16,.5);font-size:.9rem;color:var(--cream)}
+.lb-table tr:last-child td{border-bottom:none}
+.lb-table tr:hover td{background:rgba(30,16,5,.6)}
+.lb-rank{font-family:'Prosto One',sans-serif;color:var(--text-muted);font-size:.85rem;width:2.5rem}
+.lb-team{font-weight:700}
+.lb-wins{color:var(--orange);font-weight:700}
+.lb-updated{font-size:.78rem;color:var(--text-muted);margin-top:1rem;text-align:right}
+
+/* GALLERY */
+.gallery{padding:0 1.5rem 4rem}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:1.5rem}
+.gallery-item{border-radius:8px;overflow:hidden;aspect-ratio:4/3}
+.gallery-item-large{grid-column:span 2;aspect-ratio:16/9}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .3s,filter .3s;filter:brightness(.85) saturate(1.1)}
+.gallery-item:hover img{transform:scale(1.05);filter:brightness(1) saturate(1.2)}
+.gallery-grid:not(.is-expanded) .gallery-item:nth-child(n+10){display:none}
+.gallery-more{display:flex;justify-content:center;margin-top:1.5rem}
+
+/* FAQ */
+.faq{padding:0 1.5rem 4rem}
+.faq-list{display:flex;flex-direction:column;gap:.75rem}
+.faq-list details{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .25s,box-shadow .25s}
+.faq-list details.faq-open{border-color:rgba(245,162,32,.3);box-shadow:0 4px 24px rgba(245,162,32,.06)}
+.faq-list summary{padding:1.1rem 1.5rem;font-weight:700;font-size:.95rem;color:var(--cream);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:'+';font-size:1.3rem;color:var(--orange);font-weight:400;transition:transform .3s cubic-bezier(.4,0,.2,1),color .2s;flex-shrink:0;margin-left:1rem}
+.faq-list details.faq-open summary::after{transform:rotate(45deg);color:var(--cream)}
+.faq-list details p{max-height:0;overflow:hidden;opacity:0;padding:0 1.5rem;color:var(--text-muted);font-size:.93rem;line-height:1.7;transition:max-height .38s cubic-bezier(.4,0,.2,1),opacity .28s ease,padding-bottom .38s ease}
+.faq-list details.faq-open p{max-height:400px;opacity:1;padding-bottom:1.2rem}
+
+/* REGISTER */
+.register{padding:0 1.5rem 4rem}
+.register-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.register-info{display:flex;flex-direction:column;gap:1rem}
+.register-info-item{display:flex;gap:1rem;align-items:flex-start;background:rgba(30,16,5,.75);border:1px solid rgba(245,237,208,.09);border-radius:10px;padding:1rem 1.1rem;backdrop-filter:blur(8px)}
+.register-info-icon{width:42px;height:42px;border-radius:9px;background:rgba(232,52,26,.22);border:1px solid rgba(232,52,26,.35);display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0;margin-top:.1rem}
+.register-info-item h4{font-family:'Prosto One',sans-serif;font-size:.95rem;color:var(--cream);margin-bottom:.25rem}
+.register-info-item p{color:#C0956A;font-size:.88rem;line-height:1.55}
+.reg-form{display:flex;flex-direction:column;gap:1.1rem;padding:2rem;border-radius:var(--radius)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:end}
+.form-group{display:flex;flex-direction:column;gap:.4rem}
+.form-label{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted)}
+.form-input,.form-select,.form-textarea{background:rgba(18,9,2,.8);border:1px solid var(--border);border-radius:8px;padding:.7rem 1rem;font-family:'Nunito',sans-serif;font-size:.95rem;color:var(--cream);width:100%;transition:border-color .15s}
+.form-input:focus,.form-select:focus,.form-textarea:focus{outline:none;border-color:var(--orange);background:rgba(26,13,3,.9)}
+.form-input::placeholder,.form-textarea::placeholder{color:var(--text-muted)}
+.form-select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A08060' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+.form-select option{background:#1E1005;color:var(--cream)}
+.form-textarea{resize:vertical;min-height:80px}
+.form-radio-group{display:flex;gap:.75rem;flex-wrap:wrap}
+.form-radio{display:flex;align-items:center;gap:.5rem;cursor:pointer}
+.form-radio input{width:16px;height:16px;accent-color:var(--orange);cursor:pointer}
+.form-radio span{font-size:.9rem;color:var(--cream)}
+.form-submit{width:100%;padding:1rem;font-size:1rem}
+.form-note{font-size:.78rem;color:var(--text-muted);text-align:center;margin-top:.25rem}
+.form-note a{color:var(--orange)}
+.form-success{display:none;text-align:center;padding:2.5rem 2rem}
+.form-success-icon{font-size:3rem;margin-bottom:1rem}
+.form-success h3{font-family:'Prosto One',sans-serif;color:var(--cream);font-size:1.2rem;margin-bottom:.5rem}
+.form-success p{color:var(--text-muted);font-size:.93rem}
+
+/* CONTACTS */
+.contacts{padding:0 1.5rem 4rem}
+.contacts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.25rem}
+.contact-card{border-radius:var(--radius);padding:1.5rem;display:flex;flex-direction:column;gap:.45rem;transition:border-color .2s,transform .2s}
+.contact-card:hover{transform:translateY(-3px);border-color:rgba(245,162,32,.3)}
+.contact-card h3{font-family:'Prosto One',sans-serif;color:var(--cream);font-size:1rem}
+.contact-card a{color:var(--orange);font-size:.88rem}
+.contact-card a:hover{color:var(--cream)}
+.contact-card p{color:var(--text-muted);font-size:.85rem;margin-top:.25rem}
+.contact-card-accent{border-color:rgba(232,52,26,.25)}
+.contact-card-accent h3{color:var(--orange)}
+
+/* PREFOOTER */
+.prefooter{padding:3.5rem 1.5rem;background:linear-gradient(135deg,rgba(232,52,26,.12) 0%,rgba(245,162,32,.08) 100%);border-top:1px solid var(--border);position:relative;z-index:1}
+.prefooter-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;max-width:1000px;margin:0 auto}
+.prefooter h2{font-family:'Prosto One',sans-serif;font-size:clamp(1.2rem,2.5vw,1.7rem);color:var(--cream);margin-bottom:.3rem}
+.prefooter p{color:var(--text-muted);font-size:.95rem}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero-inner{grid-template-columns:1fr;gap:2rem}
+  .hero-actions .btn{width:100%}
+  .hero-panel{flex-direction:row}
+  .hero-photo-card{flex:1}
+  .hero-photo-wrap{height:110px}
+  .split-head{grid-template-columns:1fr;gap:.5rem}
+  .split-head .eyebrow{writing-mode:horizontal-tb;transform:none}
+  .nav-burger{display:flex;order:1}
+  .logo{order:2;flex:1;text-align:center}
+  .nav-cta{order:3}
+  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(18,9,2,.98);border-bottom:1px solid var(--border);padding:1rem 1.5rem 1.5rem;gap:1rem;z-index:99;order:4}
+  .nav-links li a{font-size:.95rem;padding:.25rem 0;display:block}
+  .nav-links.is-open{display:flex}
+  .formats-grid{grid-template-columns:1fr}
+  .impact-grid{grid-template-columns:1fr 1fr}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery-item-large{grid-column:span 2}
+  .contacts-grid{grid-template-columns:1fr 1fr}
+  .lb-podium{grid-template-columns:1fr 1fr 1fr;gap:.5rem;align-items:stretch}
+  .lb-podium-medal{font-size:1.5rem}
+  .lb-place{font-size:1.2rem}
+  .lb-podium-name{font-size:.78rem}
+  .lb-table th:nth-child(3),.lb-table td:nth-child(3){display:none}
+  .register-inner{grid-template-columns:1fr}
+  .register-info{order:2}
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .hero{padding:3rem 0 2.5rem}
+  .hero-panel{flex-direction:column}
+  .contacts-grid{grid-template-columns:1fr}
+  .impact-grid{grid-template-columns:1fr 1fr}
+  .impact-shell{padding:1.5rem 1rem}
+  .lb-podium{gap:.35rem}
+  .lb-podium-item{padding:.85rem .5rem}
+}
+</style>
+</head>
+<body>
+<canvas id="particles" class="particles-layer" aria-hidden="true"></canvas>
+<div class="page-glow page-glow-one"></div>
+<div class="page-glow page-glow-two"></div>
+
+<header class="site-header">
+  <nav class="container site-nav">
+    <button class="nav-burger" id="nav-burger" aria-label="Меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="#" class="logo"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/logo-quiz.png" alt="Поумничай мне тут!"></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#formats">Форматы</a></li>
+      <li><a href="#schedule">Расписание</a></li>
+      <li><a href="#leaderboard">Лидеры</a></li>
+      <li><a href="#gallery">Фото</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contacts">Контакты</a></li>
+    </ul>
+    <a href="#register" class="btn btn-primary nav-cta">Записаться</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="container hero-inner">
+      <div class="hero-copy" data-reveal>
+        <p class="hero-tagline">Красногорск · Нахабино · Московская область</p>
+        <h1 class="hero-title">Живой формат для тех,<br>кто любит <span>думать и петь</span></h1>
+        <p class="hero-sub">Думаешь, ты самый умный и знаешь все песни? Приходи и проверь — вопросы, музыка, мемы, призы и никакой духоты.</p>
+        <div class="hero-actions">
+          <a href="#schedule" class="btn btn-primary btn-large">Ближайшие игры</a>
+          <a href="#formats" class="btn btn-outline btn-large">Смотреть форматы</a>
+        </div>
+      </div>
+      <div class="hero-panel" data-reveal>
+        <a href="#register" class="hero-photo-card hero-photo-card-quiz glass">
+          <div class="hero-photo-wrap"><img src="https://static.tildacdn.com/tild3462-3162-4432-a666-336663666430/718A7420.jpg" alt="Квиз"></div>
+          <div class="hero-photo-label"><span>Квиз</span><strong>ПОУМНИЧАЙ МНЕ ТУТ</strong></div>
+        </a>
+        <a href="#register" class="hero-photo-card hero-photo-card-loto glass">
+          <div class="hero-photo-wrap"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml1.jpg" alt="Хит Лото"></div>
+          <div class="hero-photo-label"><span>Музыкальное лото</span><strong>ХИТ ЛОТО</strong></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATS -->
+<section class="formats container" id="formats">
+  <div class="section-head split-head" data-reveal>
+    <p class="eyebrow">Наши форматы</p>
+    <div><h2 class="section-title">Каждая игра — <span>особый формат</span></h2>
+    <p>Выбирай свой вечер.</p></div>
+  </div>
+  <div class="formats-grid">
+    <div class="format-card glass" data-reveal>
+      <div class="format-logo"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/logo-quiz.png" alt="Поумничай мне тут!"></div>
+      <p class="format-tag">Квиз</p>
+      <h3>ПОУМНИЧАЙ МНЕ ТУТ</h3>
+      <p>Командная интеллектуальная игра из шести раундов, где важны логика, внимание к деталям и чувство юмора. Подходит как для новичков, так и для опытных команд. В финале — победитель забирает призы и заслуженное признание.</p>
+      <ul class="format-list">
+        <li>6 раундов, около 2 часов</li>
+        <li>От 2 до 10 человек в команде</li>
+        <li>Можно прийти без команды</li>
+        <li>700 ₽ с персоны</li>
+      </ul>
+      <div class="format-cta"><a href="#register" class="btn btn-outline">Записаться</a></div>
+    </div>
+    <div class="format-card glass" data-reveal>
+      <div class="format-logo"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/logo-hitloto.png" alt="Хит лото"></div>
+      <p class="format-tag">Музыкальное лото</p>
+      <h3>ХИТ ЛОТО</h3>
+      <p>Музыкальный формат, в котором под каждым числом знакомая песня. Отмечаешь услышанные треки в карточке, собираешь комбинации, соревнуешься за приз. Не нужна логика и не нужно угадывать — просто много любимой музыки и немного удачи.</p>
+      <ul class="format-list">
+        <li>Два раунда, около 2 часов</li>
+        <li>Хиты разных жанров и эпох</li>
+        <li>Подходит для любой компании</li>
+        <li>1000 ₽ с персоны</li>
+      </ul>
+      <div class="format-cta"><a href="#register" class="btn btn-outline">Записаться</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="upcoming container" id="schedule">
+  <div class="section-head split-head" data-reveal>
+    <p class="eyebrow">Расписание игр</p>
+    <div><h2 class="section-title">Выбирай дату. <span>Собирай команду</span></h2>
+    <p>Умничай по делу или пой от всей души — выбор за тобой.</p></div>
+  </div>
+  <div class="games-grid">
+    <div class="game-card glass" data-reveal>
+      <div class="game-type quiz">Квиз</div>
+      <h3>ПОУМНИЧАЙ МНЕ ТУТ</h3>
+      <p class="game-meta">📅 18 марта, начало в 20:00</p>
+      <p class="game-meta">📍 Гастробар «РЕЛЬС»</p>
+      <p class="game-addr">р.п. Нахабино, ул. Вокзальная, 15А</p>
+      <p class="price-meta">700 ₽ / персона</p>
+      <a href="#register" class="btn btn-primary game-btn">Записаться</a>
+    </div>
+    <div class="game-card glass" data-reveal>
+      <div class="game-type music">Музыкальное лото</div>
+      <h3>ХИТ ЛОТО</h3>
+      <p class="game-meta">📅 20 марта, начало в 19:00</p>
+      <p class="game-meta">📍 Lucky Day</p>
+      <p class="game-addr">Красногорск, Подмосковный бул., 3А</p>
+      <p class="price-meta">1000 ₽ / персона</p>
+      <a href="#register" class="btn btn-primary game-btn">Записаться</a>
+    </div>
+    <div class="game-card glass" data-reveal>
+      <div class="game-type quiz">Квиз</div>
+      <h3>ПОУМНИЧАЙ МНЕ ТУТ</h3>
+      <p class="game-meta">📅 25 марта, начало в 20:00</p>
+      <p class="game-meta">📍 Гастробар «РЕЛЬС»</p>
+      <p class="game-addr">р.п. Нахабино, ул. Вокзальная, 15А</p>
+      <p class="price-meta">700 ₽ / персона</p>
+      <a href="#register" class="btn btn-primary game-btn">Записаться</a>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact container" data-reveal>
+  <div class="impact-shell glass">
+    <div class="impact-head">
+      <p class="eyebrow">В цифрах</p>
+      <h2 class="section-title">Главное здесь — <span>люди</span></h2>
+    </div>
+    <div class="impact-grid">
+      <article><strong>6</strong><p>Раундов в каждом квизе</p></article>
+      <article><strong>2–10</strong><p>Человек в команде на квизе</p></article>
+      <article><strong>2 часа</strong><p>Средняя длительность игры</p></article>
+      <article><strong>Каждую<br>неделю</strong><p>Новые вопросы и треки</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works container">
+  <h2 class="section-title center" data-reveal>Как это <span>работает</span></h2>
+  <div class="steps">
+    <div class="step" data-reveal><div class="step-num">1</div><h3>Выбери игру</h3><p>Смотри расписание и выбирай формат и дату</p></div>
+    <div class="step" data-reveal><div class="step-num">2</div><h3>Запишись</h3><p>Заполни форму — займём место за тебя</p></div>
+    <div class="step" data-reveal><div class="step-num">3</div><h3>Приходи и побеждай</h3><p>Играй, спорь, смейся и забирай призы</p></div>
+  </div>
+</section>
+
+<!-- LEADERBOARD -->
+<section class="leaderboard container" id="leaderboard">
+  <div class="section-head split-head" data-reveal>
+    <p class="eyebrow">Рейтинг</p>
+    <div><h2 class="section-title">Таблица <span>лидеров</span></h2>
+    <p>Лучшие команды квиза за последние 3 месяца. Успей попасть в топ!</p></div>
+  </div>
+  <div class="lb-podium" data-reveal>
+    <div class="lb-podium-item lb-podium-second glass">
+      <div class="lb-podium-medal">🥈</div>
+      <div class="lb-place lb-place-2">2</div>
+      <div class="lb-podium-name">Умные лисы</div>
+      <div class="lb-podium-pts"><strong>298</strong> очков</div>
+    </div>
+    <div class="lb-podium-item lb-podium-first glass">
+      <div class="lb-podium-medal">🥇</div>
+      <div class="lb-place lb-place-1">1</div>
+      <div class="lb-podium-name">Знатоки</div>
+      <div class="lb-podium-pts"><strong>347</strong> очков</div>
+    </div>
+    <div class="lb-podium-item lb-podium-third glass">
+      <div class="lb-podium-medal">🥉</div>
+      <div class="lb-place lb-place-3">3</div>
+      <div class="lb-podium-name">Мозговой штурм</div>
+      <div class="lb-podium-pts"><strong>276</strong> очков</div>
+    </div>
+  </div>
+  <div class="glass" style="border-radius:var(--radius);overflow:hidden" data-reveal>
+    <table class="lb-table">
+      <thead><tr><th>#</th><th>Команда</th><th>Игр</th><th>Побед</th><th>Очков</th></tr></thead>
+      <tbody>
+        <tr><td class="lb-rank">4</td><td class="lb-team">Пятёрка эрудитов</td><td>9</td><td class="lb-wins">3</td><td>251</td></tr>
+        <tr><td class="lb-rank">5</td><td class="lb-team">Без гугла</td><td>8</td><td class="lb-wins">2</td><td>228</td></tr>
+        <tr><td class="lb-rank">6</td><td class="lb-team">Просто так</td><td>11</td><td class="lb-wins">2</td><td>214</td></tr>
+        <tr><td class="lb-rank">7</td><td class="lb-team">Ночные совы</td><td>7</td><td class="lb-wins">1</td><td>189</td></tr>
+        <tr><td class="lb-rank">8</td><td class="lb-team">Чайники</td><td>6</td><td class="lb-wins">1</td><td>172</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="lb-updated">Обновлено: 15 марта 2026</p>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery container" id="gallery">
+  <div class="section-head split-head" data-reveal>
+    <p class="eyebrow">Фотогалерея</p>
+    <div><h2 class="section-title">Вечера, <span>которые собирают друзей</span></h2>
+    <p>Не постановочные фото, а живая атмосфера игры. Ещё больше — в Telegram.</p></div>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item gallery-item-large"><img src="https://static.tildacdn.com/tild6635-3865-4636-a635-623935383038/718A9273.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://static.tildacdn.com/tild3066-3131-4861-a330-333863363463/718A7389.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://static.tildacdn.com/tild3462-3162-4432-a666-336663666430/718A7420.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://static.tildacdn.com/tild3663-6235-4335-b963-313637333437/718A7710.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://static.tildacdn.com/tild6562-3566-4663-b364-616665623730/718A0706.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://static.tildacdn.com/tild3165-3839-4635-b233-636239343263/718A0624.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://static.tildacdn.com/tild3332-3738-4537-b635-343566356432/718A9309.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://static.tildacdn.com/tild6466-6263-4564-b939-303038303632/718A9486.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml57.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml58.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml59.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml6.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml9.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml10.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml11.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml12.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml13.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml14.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml15.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml18.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml21.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml22.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml23.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml24.jpg" alt="Фото с игры" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo_ml25.jpg" alt="Фото с игры" loading="lazy"></div>
+  </div>
+  <div class="gallery-more" id="gallery-more-wrap">
+    <button id="gallery-more-btn" class="btn btn-outline">Показать все фото</button>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq container" id="faq">
+  <div class="section-head split-head" data-reveal>
+    <p class="eyebrow">FAQ</p>
+    <div><h2 class="section-title">Часто <span>спрашивают</span></h2><p>Часто отвечаем.</p></div>
+  </div>
+  <div class="faq-list">
+    <details data-reveal><summary>Можно прийти без команды на квиз?</summary><p>Да. Если вы один, мы постараемся объединить вас с другими участниками или посадить за общий стол.</p></details>
+    <details data-reveal><summary>Сколько длится квиз?</summary><p>Около 2 часов. Иногда чуть дольше — если финал получается слишком жарким.</p></details>
+    <details data-reveal><summary>Сколько человек может быть в команде на квизе?</summary><p>От 2 до 10 человек. Формат открытый — подходит и для маленьких компаний, и для большой тусовки.</p></details>
+    <details data-reveal><summary>Нужно ли готовиться заранее?</summary><p>Нет. Ни к квизу, ни к ХИТ ЛОТО готовиться не нужно. Просто приходи.</p></details>
+    <details data-reveal><summary>Можно отметить день рождения или корпоратив?</summary><p>Можно. Напишите нам в Telegram — всё организуем.</p></details>
+    <details data-reveal><summary>Нужно ли угадывать песни в ХИТ ЛОТО?</summary><p>Нет. Ничего угадывать не нужно. Если трек звучит и есть в вашей карточке, вы просто отмечаете его.</p></details>
+    <details data-reveal><summary>Сколько длится ХИТ ЛОТО?</summary><p>Обычно около двух часов. Формат включает два раунда с отдельными победителями в каждом.</p></details>
+    <details data-reveal><summary>Сколько человек может участвовать в ХИТ ЛОТО?</summary><p>Любая компания. Главное, чтобы в баре хватило места. Можно приходить одному — весело будет в любом случае.</p></details>
+  </div>
+</section>
+
+<!-- REGISTER -->
+<section class="register container" id="register">
+  <div class="section-head split-head" data-reveal>
+    <p class="eyebrow">Регистрация</p>
+    <div><h2 class="section-title">Записаться <span>на игру</span></h2>
+    <p>Заполни форму — мы свяжемся в Telegram и подтвердим место.</p></div>
+  </div>
+  <div class="register-inner">
+    <div class="register-info" data-reveal>
+      <div class="register-info-item">
+        <div class="register-info-icon">⚡</div>
+        <div><h4>Быстро</h4><p>Форма займёт 2 минуты. Подтверждение — в течение часа.</p></div>
+      </div>
+      <div class="register-info-item">
+        <div class="register-info-icon">👥</div>
+        <div><h4>Можно без команды</h4><p>Если ты один — укажи в комментарии. Найдём компанию на месте.</p></div>
+      </div>
+      <div class="register-info-item">
+        <div class="register-info-icon">🏆</div>
+        <div><h4>Место гарантировано</h4><p>После подтверждения твоё место забронировано. Просто приходи и играй.</p></div>
+      </div>
+      <div class="register-info-item">
+        <div class="register-info-icon">🎂</div>
+        <div><h4>День рождения?</h4><p>Укажи в комментарии — сделаем сюрприз. Корпоративы тоже организуем.</p></div>
+      </div>
+    </div>
+    <div data-reveal>
+      <!-- Для активации: зарегистрируйся на formspree.io и замени YOUR_FORM_ID -->
+      <form class="reg-form glass" id="reg-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="reg-name">Имя капитана *</label>
+            <input class="form-input" id="reg-name" name="name" type="text" placeholder="Иван" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reg-contact">Telegram / телефон *</label>
+            <input class="form-input" id="reg-contact" name="contact" type="text" placeholder="@username или +7..." required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Формат игры *</label>
+          <div class="form-radio-group">
+            <label class="form-radio"><input type="radio" name="format" value="quiz" required><span>Квиз — Поумничай мне тут!</span></label>
+            <label class="form-radio"><input type="radio" name="format" value="loto"><span>Хит Лото</span></label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="reg-date">Дата игры *</label>
+            <select class="form-select" id="reg-date" name="date" required>
+              <option value="" disabled selected>Выбери дату</option>
+              <option>18 марта — Квиз, Нахабино (РЕЛЬС), 20:00</option>
+              <option>20 марта — Хит Лото, Красногорск (Lucky Day), 19:00</option>
+              <option>25 марта — Квиз, Нахабино (РЕЛЬС), 20:00</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reg-count">Кол-во человек *</label>
+            <select class="form-select" id="reg-count" name="count" required>
+              <option value="" disabled selected>Выбери</option>
+              <option>1 (объединим с другими)</option>
+              <option>2</option><option>3</option><option>4</option><option>5</option>
+              <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+              <option>Больше 10 (уточним)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reg-team">Название команды</label>
+          <input class="form-input" id="reg-team" name="team" type="text" placeholder="«Без гугла»">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reg-comment">Комментарий</label>
+          <textarea class="form-textarea" id="reg-comment" name="comment" placeholder="День рождения, корпоратив, особые пожелания..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary form-submit btn-large">Записаться на игру</button>
+        <p class="form-note">Или напрямую: <a href="https://t.me/Vlad_Ah" target="_blank" rel="noopener noreferrer">@Vlad_Ah</a> · <a href="https://t.me/elkvis" target="_blank" rel="noopener noreferrer">@elkvis</a></p>
+      </form>
+      <div class="form-success glass" id="form-success" style="border-radius:var(--radius)">
+        <div class="form-success-icon">🎉</div>
+        <h3>Заявка отправлена!</h3>
+        <p>Мы свяжемся с тобой в Telegram в течение часа и подтвердим место.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTS -->
+<section class="contacts container" id="contacts">
+  <div class="section-head split-head" data-reveal>
+    <p class="eyebrow">Контакты</p>
+    <div><h2 class="section-title">Прямая связь <span>без лишних шагов</span></h2>
+    <p>Вопросы, корпоративы, дни рождения — пишите напрямую.</p></div>
+  </div>
+  <div class="contacts-grid">
+    <article class="contact-card glass" data-reveal>
+      <h3>Владимир</h3>
+      <a href="tel:89261625639">8 926 162-56-39</a>
+      <a href="https://t.me/Vlad_Ah" target="_blank" rel="noopener noreferrer">@Vlad_Ah</a>
+      <p>Основатель и решатель всех вопросов.</p>
+    </article>
+    <article class="contact-card glass" data-reveal>
+      <h3>Эльдар</h3>
+      <a href="tel:89262149124">8 926 214-91-24</a>
+      <a href="https://t.me/elkvis" target="_blank" rel="noopener noreferrer">@elkvis</a>
+      <p>Запись на игры и координация команд.</p>
+    </article>
+    <article class="contact-card glass" data-reveal>
+      <h3>Павел</h3>
+      <a href="tel:89258898943">8 925 889-89-43</a>
+      <a href="https://t.me/paulfoggy" target="_blank" rel="noopener noreferrer">@paulfoggy</a>
+      <p>И швец, и жнец, и на дуде игрец.</p>
+    </article>
+    <article class="contact-card contact-card-accent glass" data-reveal>
+      <h3>Telegram-канал</h3>
+      <a href="https://t.me/pmtquiz" target="_blank" rel="noopener noreferrer">@pmtquiz</a>
+      <p>Анонсы, фото, результаты и быстрая запись.</p>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<section class="prefooter">
+  <div class="prefooter-inner">
+    <div>
+      <h2>Готов сыграть?</h2>
+      <p>Места занимаем быстро — записывайся сейчас.</p>
+    </div>
+    <a href="#register" class="btn btn-primary btn-large">Записаться на игру</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-logos">
+      <img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/logo-quiz.png" alt="Поумничай мне тут!">
+      <img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/logo-hitloto.png" alt="Хит лото">
+    </div>
+    <p>Квизы и музыкальное лото в Красногорске и Московской области</p>
+    <p>Вопросы и запись: <a href="https://t.me/Vlad_Ah">@Vlad_Ah</a> · <a href="https://t.me/pmtquiz">@pmtquiz</a></p>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const revealItems=document.querySelectorAll('[data-reveal]');
+if(revealItems.length){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('is-visible');obs.unobserve(e.target);});
+  },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+  revealItems.forEach((item,i)=>{item.style.transitionDelay=Math.min(i*40,200)+'ms';obs.observe(item);});
+}
+// FAQ accordion
+document.querySelectorAll('.faq-list details').forEach(item=>{
+  const summary=item.querySelector('summary');
+  summary.addEventListener('click',e=>{
+    e.preventDefault();
+    const isOpen=item.classList.contains('faq-open');
+    document.querySelectorAll('.faq-list details.faq-open').forEach(o=>{o.classList.remove('faq-open');o.removeAttribute('open');});
+    if(!isOpen){item.setAttribute('open','');requestAnimationFrame(()=>item.classList.add('faq-open'));}
+  });
+});
+// Hamburger
+const burger=document.getElementById('nav-burger');
+const navLinks=document.getElementById('nav-links');
+if(burger&&navLinks){
+  burger.addEventListener('click',()=>{
+    const open=navLinks.classList.toggle('is-open');
+    burger.classList.toggle('is-open',open);
+    burger.setAttribute('aria-expanded',String(open));
+  });
+  navLinks.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{
+    navLinks.classList.remove('is-open');burger.classList.remove('is-open');burger.setAttribute('aria-expanded','false');
+  }));
+}
+// Gallery expand
+const galleryBtn=document.getElementById('gallery-more-btn');
+if(galleryBtn){
+  galleryBtn.addEventListener('click',function(){
+    document.querySelector('.gallery-grid').classList.add('is-expanded');
+    document.getElementById('gallery-more-wrap').style.display='none';
+  });
+}
+// Registration form
+const regForm=document.getElementById('reg-form');
+if(regForm){
+  regForm.addEventListener('submit',async function(e){
+    e.preventDefault();
+    const btn=this.querySelector('[type="submit"]');
+    const orig=btn.textContent;btn.textContent='Отправляем...';btn.disabled=true;
+    try{
+      const res=await fetch(this.action,{method:'POST',body:new FormData(this),headers:{Accept:'application/json'}});
+      if(res.ok){regForm.style.display='none';document.getElementById('form-success').style.display='block';}
+      else{btn.textContent=orig;btn.disabled=false;alert('Ошибка. Напишите: @Vlad_Ah');}
+    }catch{btn.textContent=orig;btn.disabled=false;alert('Ошибка сети. Напишите: @Vlad_Ah');}
+  });
+}
+// Particles
+const canvas=document.getElementById('particles');
+const noMotion=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+if(canvas&&!noMotion){
+  const ctx=canvas.getContext('2d');const pts=[];let af=null;
+  const ptr={x:innerWidth/2,y:innerHeight/2};
+  const resize=()=>{canvas.width=innerWidth;canvas.height=innerHeight;};
+  const build=()=>{
+    pts.length=0;const n=innerWidth<760?16:28;
+    for(let i=0;i<n;i++)pts.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*4+1.5,sx:(Math.random()-.5)*.1,sy:(Math.random()-.5)*.1,d:Math.random()*.8+.2,streak:Math.random()>.78,sl:Math.random()*32+16});
+  };
+  const draw=()=>{
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    const ox=(ptr.x/innerWidth-.5)*28,oy=(ptr.y/innerHeight-.5)*28;
+    pts.forEach(p=>{
+      p.x+=p.sx;p.y+=p.sy;
+      if(p.x<-20)p.x=canvas.width+20;if(p.x>canvas.width+20)p.x=-20;
+      if(p.y<-20)p.y=canvas.height+20;if(p.y>canvas.height+20)p.y=-20;
+      const dx=p.x+ox*p.d,dy=p.y+oy*p.d,warm=p.d>.55;
+      ctx.beginPath();ctx.arc(dx,dy,p.r,0,Math.PI*2);
+      const g=ctx.createRadialGradient(dx,dy,0,dx,dy,p.r*4);
+      if(warm){g.addColorStop(0,`rgba(232,52,26,${.14+p.d*.14})`);g.addColorStop(1,'rgba(232,52,26,0)');}
+      else{g.addColorStop(0,`rgba(245,162,32,${.16+p.d*.16})`);g.addColorStop(1,'rgba(245,162,32,0)');}
+      ctx.fillStyle=g;ctx.fill();
+      if(p.streak){ctx.beginPath();ctx.moveTo(dx,dy);ctx.lineTo(dx+p.sl*p.d,dy-p.sl*.3*p.d);ctx.strokeStyle=warm?'rgba(232,52,26,.15)':'rgba(245,162,32,.15)';ctx.lineWidth=Math.max(1,p.r*.2);ctx.stroke();}
+    });
+    af=requestAnimationFrame(draw);
+  };
+  resize();build();draw();
+  addEventListener('resize',()=>{resize();build();});
+  addEventListener('mousemove',e=>{ptr.x=e.clientX;ptr.y=e.clientY;});
+  addEventListener('beforeunload',()=>{if(af)cancelAnimationFrame(af);});
+}
+</script>
+</body>
+</html>
