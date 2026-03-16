@@ -62,12 +62,13 @@ a:hover{color:var(--cream)}
 .hero-title span{color:var(--orange)}
 .hero-sub{color:var(--text-muted);font-size:1rem}
 .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-actions .btn{flex:1;justify-content:center;min-width:160px}
 .hero-panel{display:flex;flex-direction:column;gap:1rem}
-.hero-photo-card{display:flex;align-items:center;gap:1rem;border-radius:var(--radius);padding:.75rem;text-decoration:none;transition:transform .2s,border-color .2s}
+.hero-photo-card{display:flex;flex-direction:column;align-items:stretch;border-radius:var(--radius);padding:0;overflow:hidden;text-decoration:none;transition:transform .2s,border-color .2s}
 .hero-photo-card:hover{transform:translateY(-3px);border-color:rgba(245,162,32,.3);color:inherit}
-.hero-photo-wrap{width:90px;height:68px;border-radius:8px;overflow:hidden;flex-shrink:0}
+.hero-photo-wrap{width:100%;height:160px;border-radius:0;overflow:hidden;flex-shrink:0}
 .hero-photo-wrap img{width:100%;height:100%;object-fit:cover}
-.hero-photo-label{display:flex;flex-direction:column;gap:.2rem}
+.hero-photo-label{display:flex;flex-direction:column;gap:.2rem;padding:.6rem .75rem .55rem}
 .hero-photo-label span{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted)}
 .hero-photo-label strong{font-family:'Russo One',sans-serif;font-size:.9rem}
 .hero-photo-card-quiz .hero-photo-label strong{color:#FF6B50}
@@ -137,6 +138,7 @@ a:hover{color:var(--cream)}
   .hero-inner{grid-template-columns:1fr;gap:2rem}
   .hero-panel{flex-direction:row}
   .hero-photo-card{flex:1}
+  .hero-photo-wrap{height:110px}
   .split-head{grid-template-columns:1fr;gap:.5rem}
   .split-head .eyebrow{writing-mode:horizontal-tb;transform:none}
   .nav-burger{display:flex;order:1}
@@ -197,7 +199,7 @@ a:hover{color:var(--cream)}
       </div>
       <div class="hero-panel" data-reveal>
         <a href="https://t.me/pmtquiz" target="_blank" class="hero-photo-card hero-photo-card-quiz glass">
-          <div class="hero-photo-wrap"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo4.jpg" alt="Квиз"></div>
+          <div class="hero-photo-wrap"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/photo2.jpg" alt="Квиз"></div>
           <div class="hero-photo-label"><span>Квиз</span><strong>ПОУМНИЧАЙ МНЕ ТУТ</strong></div>
         </a>
         <a href="https://t.me/pmtquiz" target="_blank" class="hero-photo-card hero-photo-card-loto glass">
