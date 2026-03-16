@@ -24,12 +24,12 @@ a:hover{color:var(--cream)}
 .center{text-align:center}
 .site-header{background:rgba(18,9,2,.92);border-bottom:1px solid var(--border);padding:.75rem 0;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
 .site-nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.logo img{height:40px;display:block}
-.nav-links{list-style:none;display:flex;gap:1.25rem;align-items:center}
+.logo{order:1}.logo img{height:40px;display:block}
+.nav-links{list-style:none;display:flex;gap:1.25rem;align-items:center;order:2}
 .nav-links a{color:var(--cream);font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.04em}
 .nav-links a:hover{color:var(--orange)}
-.nav-right{display:flex;align-items:center;gap:.75rem}
-.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-cta{order:3;white-space:nowrap}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;order:0}
 .nav-burger span{display:block;width:24px;height:2px;background:var(--cream);border-radius:2px;transition:transform .25s,opacity .25s}
 .nav-burger.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .nav-burger.is-open span:nth-child(2){opacity:0}
@@ -139,8 +139,10 @@ a:hover{color:var(--cream)}
   .hero-photo-card{flex:1}
   .split-head{grid-template-columns:1fr;gap:.5rem}
   .split-head .eyebrow{writing-mode:horizontal-tb;transform:none}
-  .nav-burger{display:flex}
-  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(18,9,2,.98);border-bottom:1px solid var(--border);padding:1rem 1.5rem 1.5rem;gap:1rem;z-index:99}
+  .nav-burger{display:flex;order:1}
+  .logo{order:2;flex:1;text-align:center}
+  .nav-cta{order:3}
+  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(18,9,2,.98);border-bottom:1px solid var(--border);padding:1rem 1.5rem 1.5rem;gap:1rem;z-index:99;order:4}
   .nav-links li a{font-size:.95rem;padding:.25rem 0;display:block}
   .nav-links.is-open{display:flex}
   .formats-grid{grid-template-columns:1fr}
@@ -165,6 +167,9 @@ a:hover{color:var(--cream)}
 
 <header class="site-header">
   <nav class="container site-nav">
+    <button class="nav-burger" id="nav-burger" aria-label="Меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <a href="#" class="logo"><img src="https://raw.githubusercontent.com/Clavdia-coder/quiz-site/master/static/images/logo-quiz.png" alt="Поумничай мне тут!"></a>
     <ul class="nav-links" id="nav-links">
       <li><a href="#formats">Форматы</a></li>
@@ -173,12 +178,7 @@ a:hover{color:var(--cream)}
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contacts">Контакты</a></li>
     </ul>
-    <div class="nav-right">
-      <a href="https://t.me/pmtquiz" target="_blank" class="btn btn-primary">Записаться</a>
-      <button class="nav-burger" id="nav-burger" aria-label="Меню" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+    <a href="https://t.me/pmtquiz" target="_blank" class="btn btn-primary nav-cta">Записаться</a>
   </nav>
 </header>
 
