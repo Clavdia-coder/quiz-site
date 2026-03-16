@@ -184,13 +184,14 @@ a:hover{color:var(--cream)}
 .gallery-more{display:flex;justify-content:center;margin-top:1.5rem}
 .faq{padding:0 1.5rem 4rem}
 .faq-list{display:flex;flex-direction:column;gap:.75rem}
-.faq-list details{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .2s}
-.faq-list details[open]{border-color:rgba(245,162,32,.3)}
+.faq-list details{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .25s,box-shadow .25s}
+.faq-list details.faq-open{border-color:rgba(245,162,32,.3);box-shadow:0 4px 24px rgba(245,162,32,.06)}
 .faq-list summary{padding:1.1rem 1.5rem;font-weight:700;font-size:.95rem;color:var(--cream);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none}
 .faq-list summary::-webkit-details-marker{display:none}
-.faq-list summary::after{content:'+';font-size:1.3rem;color:var(--orange);font-weight:400;transition:transform .2s;flex-shrink:0;margin-left:1rem}
-.faq-list details[open] summary::after{transform:rotate(45deg)}
-.faq-list details p{padding:0 1.5rem 1.1rem;color:var(--text-muted);font-size:.93rem;line-height:1.7}
+.faq-list summary::after{content:'+';font-size:1.3rem;color:var(--orange);font-weight:400;transition:transform .3s cubic-bezier(.4,0,.2,1),color .2s;flex-shrink:0;margin-left:1rem}
+.faq-list details.faq-open summary::after{transform:rotate(45deg);color:var(--cream)}
+.faq-list details p{max-height:0;overflow:hidden;opacity:0;padding:0 1.5rem;color:var(--text-muted);font-size:.93rem;line-height:1.7;transition:max-height .38s cubic-bezier(.4,0,.2,1),opacity .28s ease,padding-bottom .38s ease}
+.faq-list details.faq-open p{max-height:400px;opacity:1;padding-bottom:1.2rem}
 .contacts{padding:0 1.5rem 4rem}
 .contacts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.25rem}
 .contact-card{border-radius:var(--radius);padding:1.5rem;display:flex;flex-direction:column;gap:.45rem;transition:border-color .2s,transform .2s}
@@ -725,11 +726,20 @@ if(revealItems.length){
   },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
   revealItems.forEach((item,i)=>{ item.style.transitionDelay=Math.min(i*40,200)+'ms'; obs.observe(item); });
 }
-// FAQ accordion
+// FAQ accordion with animation
 document.querySelectorAll('.faq-list details').forEach(item=>{
-  item.addEventListener('toggle',()=>{
-    if(!item.open) return;
-    document.querySelectorAll('.faq-list details').forEach(o=>{ if(o!==item) o.open=false; });
+  const summary=item.querySelector('summary');
+  summary.addEventListener('click',e=>{
+    e.preventDefault();
+    const isOpen=item.classList.contains('faq-open');
+    document.querySelectorAll('.faq-list details.faq-open').forEach(o=>{
+      o.classList.remove('faq-open');
+      o.removeAttribute('open');
+    });
+    if(!isOpen){
+      item.setAttribute('open','');
+      requestAnimationFrame(()=>item.classList.add('faq-open'));
+    }
   });
 });
 // Hamburger
