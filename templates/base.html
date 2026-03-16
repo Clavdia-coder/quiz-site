@@ -12,28 +12,40 @@
     {% block head %}{% endblock %}
 </head>
 <body>
-    <header>
-        <nav class="container">
+    <canvas id="particles" class="particles-layer" aria-hidden="true"></canvas>
+    <div class="page-glow page-glow-one"></div>
+    <div class="page-glow page-glow-two"></div>
+
+    <header class="site-header">
+        <nav class="container site-nav">
             <a href="/" class="logo"><img src="/static/images/logo-quiz.png" alt="Поумничай мне тут!"></a>
-            <ul class="nav-links">
+            <button class="nav-burger" id="nav-burger" aria-label="Меню" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="/#formats">Форматы</a></li>
                 <li><a href="/schedule">Расписание</a></li>
-                <li><a href="/leaderboard">Лидеры</a></li>
-                <li><a href="/schedule" class="btn btn-primary" style="padding:.4rem 1rem;font-size:.85rem">Записаться</a></li>
+                <li><a href="/#gallery">Фото</a></li>
+                <li><a href="/#faq">FAQ</a></li>
+                <li><a href="/#contacts">Контакты</a></li>
+                <li><a href="/schedule" class="btn btn-primary nav-cta">Записаться</a></li>
             </ul>
         </nav>
     </header>
 
     <main>{% block content %}{% endblock %}</main>
 
-    <footer>
+    <footer class="site-footer">
         <div class="container">
-            <div style="display:flex;gap:2rem;justify-content:center;align-items:center;margin-bottom:1rem;flex-wrap:wrap">
-                <img src="/static/images/logo-quiz.png" alt="Поумничай мне тут!" style="height:34px;opacity:.6">
-                <img src="/static/images/logo-hitloto.png" alt="Хит лото" style="height:34px;opacity:.6">
+            <div class="footer-logos">
+                <img src="/static/images/logo-quiz.png" alt="Поумничай мне тут!">
+                <img src="/static/images/logo-hitloto.png" alt="Хит лото">
             </div>
             <p>Квизы и музыкальное лото в Красногорске и Московской области</p>
-            <p style="margin-top:.5rem">Вопросы и запись: <a href="https://t.me/Vlad_Ah">Telegram</a></p>
+            <p>Вопросы и запись: <a href="https://t.me/Vlad_Ah">Telegram @Vlad_Ah</a></p>
         </div>
     </footer>
+
+    <script src="/static/main.js"></script>
 </body>
 </html>

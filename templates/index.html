@@ -1,53 +1,99 @@
 {% extends "base.html" %}
 {% block title %}Квизы и музыкальное лото в Красногорске — Поумничай мне тут!{% endblock %}
+{% block meta_description %}Еженедельные квизы и музыкальное лото в барах Красногорска и Нахабино. Командная игра, живые эмоции, крутые призы. Записывайтесь!{% endblock %}
 
 {% block content %}
 <section class="hero">
-    <div class="hero-bg"></div>
     <div class="hero-content">
-        <div class="container">
-            <p class="hero-tagline">Красногорск · Московская область</p>
-            <div class="hero-brands">
-                <img src="/static/images/logo-quiz.png" alt="Поумничай мне тут!">
-                <img src="/static/images/logo-hitloto.png" alt="Хит лото">
+        <div class="container hero-inner">
+            <div class="hero-copy" data-reveal>
+                <p class="hero-tagline">Красногорск · Нахабино · Московская область</p>
+                <h1 class="hero-title">Квизы и музлото<br>для тех, кто любит<br><span>играть вместе</span></h1>
+                <p class="hero-sub">Еженедельные игры в лучших барах района. Выбирай формат, записывайся командой и приходи за эмоциями.</p>
+                <div class="hero-actions">
+                    <a href="/schedule" class="btn btn-primary btn-large">Ближайшие игры</a>
+                    <a href="#formats" class="btn btn-outline btn-large">Смотреть форматы</a>
+                </div>
             </div>
-            <p class="hero-sub">Интеллектуальные квизы и музыкальное лото в лучших барах района — каждую неделю</p>
-            <div class="hero-actions">
-                <a href="/schedule" class="btn btn-primary btn-large">Ближайшие игры</a>
-                <a href="/leaderboard" class="btn btn-outline btn-large">Таблица лидеров</a>
+
+            <div class="hero-panel" data-reveal>
+                <a href="/schedule" class="hero-photo-card hero-photo-card-quiz glass">
+                    <div class="hero-photo-wrap">
+                        <img src="/static/images/photo4.jpg" alt="Квиз Поумничай мне тут">
+                    </div>
+                    <div class="hero-photo-label">
+                        <span>Квиз</span>
+                        <strong>ПОУМНИЧАЙ МНЕ ТУТ</strong>
+                    </div>
+                </a>
+                <a href="/schedule" class="hero-photo-card hero-photo-card-loto glass">
+                    <div class="hero-photo-wrap">
+                        <img src="/static/images/photo_ml1.jpg" alt="Хит Лото">
+                    </div>
+                    <div class="hero-photo-label">
+                        <span>Музыкальное лото</span>
+                        <strong>ХИТ ЛОТО</strong>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
 </section>
 
-<section class="formats container">
-    <h2 class="section-title center">Два формата — <span>один кайф</span></h2>
-    <div class="formats-grid">
-        <div class="format-card">
-            <div class="format-logo"><img src="/static/images/logo-quiz.png" alt="Поумничай мне тут!"></div>
-            <p>Классический интеллектуальный квиз. Вопросы на эрудицию, логику, кино, музыку, спорт. Команда до 6 человек — побеждает сильнейший!</p>
+<section class="formats container" id="formats">
+    <div class="section-head split-head" data-reveal>
+        <p class="eyebrow">Наши форматы</p>
+        <div>
+            <h2 class="section-title">Выбирай <span>свой вечер</span></h2>
+            <p>Неважно хочешь ли ты блеснуть умом или петь и веселиться — в любом случае отлично проведёшь время.</p>
         </div>
-        <div class="format-card">
+    </div>
+    <div class="formats-grid">
+        <div class="format-card glass" data-reveal>
+            <div class="format-logo"><img src="/static/images/logo-quiz.png" alt="Поумничай мне тут!"></div>
+            <p class="format-tag">Квиз</p>
+            <h3>ПОУМНИЧАЙ МНЕ ТУТ</h3>
+            <p>Командная игра для тех, кто любит думать быстро, спорить громко и забирать призы по делу. Вопросы на эрудицию, кино, музыку, спорт.</p>
+            <ul class="format-list">
+                <li>Около 2 часов</li>
+                <li>От 2 до 6 человек в команде</li>
+                <li>Можно прийти без своей команды</li>
+            </ul>
+        </div>
+        <div class="format-card glass" data-reveal>
             <div class="format-logo"><img src="/static/images/logo-hitloto.png" alt="Хит лото"></div>
-            <p>Музыкальное лото — угадай мелодию за несколько секунд. Треки из разных эпох и жанров. Весело, ностальгично, для всех возрастов!</p>
+            <p class="format-tag">Музыкальное лото</p>
+            <h3>ХИТ ЛОТО</h3>
+            <p>Если трек звучит и есть в карточке — просто отмечаешь его. Формат лёгкий, быстрый и очень социальный. Треки из разных эпох, для всех возрастов.</p>
+            <ul class="format-list">
+                <li>От двух до трёх часов</li>
+                <li>Два раунда, отдельные победители</li>
+                <li>Подходит для компании и праздников</li>
+            </ul>
         </div>
     </div>
 </section>
 
 {% if games %}
-<section class="upcoming container">
-    <h2 class="section-title">Ближайшие <span>игры</span></h2>
+<section class="upcoming container" id="schedule-preview">
+    <div class="section-head split-head" data-reveal>
+        <p class="eyebrow">Расписание игр</p>
+        <div>
+            <h2 class="section-title">Выбирай дату. <span>Собирай команду</span></h2>
+            <p>Любители поумничать, звёзды танцпола и завсегдатаи — бери их всех!</p>
+        </div>
+    </div>
     <div class="games-grid">
         {% for game in games %}
-        <div class="game-card">
+        <div class="game-card glass" data-reveal>
             <div class="game-type {{ 'quiz' if game.game_type == 'quiz' else 'music' }}">
                 {{ "Квиз" if game.game_type == "quiz" else "Хит лото" }}
             </div>
             <h3>{{ game.title }}</h3>
             <p class="game-meta">📅 {{ game.game_date.strftime("%d.%m.%Y в %H:%M") }}</p>
             <p class="game-meta">📍 {{ game.location }}</p>
-            {% if game.price > 0 %}<p class="game-meta">💰 {{ game.price }} ₽ с команды</p>{% endif %}
-            <a href="/register/{{ game.id }}" class="btn btn-primary" style="margin-top:1rem">Записаться</a>
+            {% if game.price > 0 %}<p class="game-meta price-meta">{{ game.price }} ₽ с команды</p>{% endif %}
+            <a href="/register/{{ game.id }}" class="btn btn-primary game-btn">Записаться</a>
         </div>
         {% endfor %}
     </div>
@@ -55,24 +101,65 @@
 </section>
 {% endif %}
 
-<section class="how-it-works container">
-    <h2 class="section-title center">Как это <span>работает</span></h2>
-    <div class="steps">
-        <div class="step"><div class="step-num">1</div><p>Выбери игру в расписании</p></div>
-        <div class="step"><div class="step-num">2</div><p>Запишись командой (1–6 человек)</p></div>
-        <div class="step"><div class="step-num">3</div><p>Приходи, играй, побеждай!</p></div>
+<section class="impact container" data-reveal>
+    <div class="impact-shell glass">
+        <div class="impact-head">
+            <p class="eyebrow">Нас уже много</p>
+            <h2 class="section-title">Главное здесь — <span>люди</span></h2>
+        </div>
+        <div class="impact-grid">
+            <article>
+                <strong>~2 часа</strong>
+                <p>Средняя длительность квиза и ХИТ ЛОТО</p>
+            </article>
+            <article>
+                <strong>2–6</strong>
+                <p>Рекомендуемый размер команды на квизе</p>
+            </article>
+            <article>
+                <strong>Каждую<br>неделю</strong>
+                <p>Новые вопросы, новые треки, новые победители</p>
+            </article>
+        </div>
     </div>
 </section>
 
-<section class="gallery container">
-    <h2 class="section-title">Как это <span>выглядит</span></h2>
+<section class="how-it-works container">
+    <h2 class="section-title center" data-reveal>Как это <span>работает</span></h2>
+    <div class="steps">
+        <div class="step" data-reveal>
+            <div class="step-num">1</div>
+            <h3>Выбери игру</h3>
+            <p>Смотри расписание и выбирай формат и дату</p>
+        </div>
+        <div class="step" data-reveal>
+            <div class="step-num">2</div>
+            <h3>Запишись</h3>
+            <p>Укажи название команды и контакты — займём место</p>
+        </div>
+        <div class="step" data-reveal>
+            <div class="step-num">3</div>
+            <h3>Приходи и побеждай</h3>
+            <p>Играй, спорь, смейся и забирай призы</p>
+        </div>
+    </div>
+</section>
+
+<section class="gallery container" id="gallery">
+    <div class="section-head split-head" data-reveal>
+        <p class="eyebrow">Фотогалерея</p>
+        <div>
+            <h2 class="section-title">Каждая игра <span>по-своему яркая</span></h2>
+            <p>Ещё больше фото в нашем Telegram-канале.</p>
+        </div>
+    </div>
     <div class="gallery-grid">
-        <div class="gallery-item"><img src="/static/images/photo_ml6.jpg" alt="Хит лото" loading="lazy"></div>
-        <div class="gallery-item"><img src="/static/images/photo_ml1.jpg" alt="Хит лото" loading="lazy"></div>
-        <div class="gallery-item"><img src="/static/images/photo2.jpg" alt="Поумничай мне тут!" loading="lazy"></div>
-        <div class="gallery-item"><img src="/static/images/photo4.jpg" alt="Квиз" loading="lazy"></div>
-        <div class="gallery-item"><img src="/static/images/photo_ml9.jpg" alt="Хит лото" loading="lazy"></div>
-        <div class="gallery-item"><img src="/static/images/photo_ml10.jpg" alt="Хит лото" loading="lazy"></div>
+        <div class="gallery-item gallery-item-large" data-reveal><img src="/static/images/photo_ml6.jpg" alt="Хит лото" loading="lazy"></div>
+        <div class="gallery-item" data-reveal><img src="/static/images/photo_ml1.jpg" alt="Хит лото" loading="lazy"></div>
+        <div class="gallery-item" data-reveal><img src="/static/images/photo2.jpg" alt="Поумничай мне тут!" loading="lazy"></div>
+        <div class="gallery-item" data-reveal><img src="/static/images/photo4.jpg" alt="Квиз" loading="lazy"></div>
+        <div class="gallery-item" data-reveal><img src="/static/images/photo_ml9.jpg" alt="Хит лото" loading="lazy"></div>
+        <div class="gallery-item" data-reveal><img src="/static/images/photo_ml10.jpg" alt="Хит лото" loading="lazy"></div>
         <div class="gallery-item"><img src="/static/images/photo_ml4.jpg" alt="Хит лото" loading="lazy"></div>
         <div class="gallery-item"><img src="/static/images/photo_ml12.jpg" alt="Хит лото" loading="lazy"></div>
         <div class="gallery-item"><img src="/static/images/photo_ml11.jpg" alt="Хит лото" loading="lazy"></div>
@@ -125,6 +212,77 @@
         <div class="gallery-item"><img src="/static/images/photo_ml57.jpg" alt="Хит лото" loading="lazy"></div>
         <div class="gallery-item"><img src="/static/images/photo_ml58.jpg" alt="Хит лото" loading="lazy"></div>
         <div class="gallery-item"><img src="/static/images/photo_ml59.jpg" alt="Хит лото" loading="lazy"></div>
+    </div>
+</section>
+
+<section class="faq container" id="faq">
+    <div class="section-head split-head" data-reveal>
+        <p class="eyebrow">FAQ</p>
+        <div>
+            <h2 class="section-title">Часто <span>спрашивают</span></h2>
+            <p>Мы так же часто отвечаем.</p>
+        </div>
+    </div>
+    <div class="faq-list">
+        <details data-reveal>
+            <summary>Можно прийти без команды на квиз?</summary>
+            <p>Да. Если вы один, организаторы постараются объединить вас с другими участниками или посадить за общий стол.</p>
+        </details>
+        <details data-reveal>
+            <summary>Сколько длится квиз?</summary>
+            <p>Около 2 часов. Иногда чуть дольше, если финал получается слишком жарким.</p>
+        </details>
+        <details data-reveal>
+            <summary>Нужно ли готовиться заранее?</summary>
+            <p>Нет. Ни к квизу, ни к ХИТ ЛОТО готовиться не нужно. Приходи и играй.</p>
+        </details>
+        <details data-reveal>
+            <summary>Нужно ли угадывать песни в ХИТ ЛОТО?</summary>
+            <p>Нет. Если трек звучит и есть в вашей карточке, вы просто отмечаете его. Никаких конкурсов на угадывание.</p>
+        </details>
+        <details data-reveal>
+            <summary>Сколько человек может быть в команде?</summary>
+            <p>Для квиза — от 2 до 6 человек. Для корпоративов и дней рождения лучше написать организаторам заранее.</p>
+        </details>
+        <details data-reveal>
+            <summary>Можно отмечать день рождения?</summary>
+            <p>Отличная идея! Напиши нам в Telegram или укажи в комментарии при записи — сделаем приятный сюрприз.</p>
+        </details>
+    </div>
+</section>
+
+<section class="contacts container" id="contacts">
+    <div class="section-head split-head" data-reveal>
+        <p class="eyebrow">Контакты</p>
+        <div>
+            <h2 class="section-title">Прямая запись <span>без лишних шагов</span></h2>
+            <p>Если остались вопросы или хотите обсудить корпоратив — пишите.</p>
+        </div>
+    </div>
+    <div class="contacts-grid">
+        <article class="contact-card glass" data-reveal>
+            <h3>Владимир</h3>
+            <a href="tel:89261625639">8 926 162-56-39</a>
+            <a href="https://t.me/Vlad_Ah" target="_blank">@Vlad_Ah</a>
+            <p>Основатель, создатель и решатель всех вопросов.</p>
+        </article>
+        <article class="contact-card glass" data-reveal>
+            <h3>Эльдар</h3>
+            <a href="tel:89262149124">8 926 214-91-24</a>
+            <a href="https://t.me/elkvis" target="_blank">@elkvis</a>
+            <p>Запись на игры и координация команд.</p>
+        </article>
+        <article class="contact-card glass" data-reveal>
+            <h3>Павел</h3>
+            <a href="tel:89258898943">8 925 889-89-43</a>
+            <a href="https://t.me/paulfoggy" target="_blank">@paulfoggy</a>
+            <p>И швец, и жнец, и на дуде игрец.</p>
+        </article>
+        <article class="contact-card contact-card-accent glass" data-reveal>
+            <h3>Telegram-канал</h3>
+            <a href="https://t.me/pmtquiz" target="_blank">@pmtquiz</a>
+            <p>Анонсы игр, фото, результаты и быстрая запись.</p>
+        </article>
     </div>
 </section>
 {% endblock %}
